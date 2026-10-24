@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical 4 | DBMS Practical Lab</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080f20;
+  color: #e2e8f0;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 22px 14px 60px;
+}
+
+.back {
+  display: inline-block;
+  color: #4cc9e8;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin: 12px 0 30px;
+}
+
+.card {
+  background: #142238;
+  border: 1px solid #263a53;
+  border-radius: 17px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  color: #4cc9e8;
+  font-size: 21px;
+  margin: 0 0 16px;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  padding-left: 22px;
+  margin: 10px 0 0;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.code-header h2 {
+  margin: 0;
+}
+
+.copy-btn {
+  background: #24445e;
+  border: 1px solid #4cc9e8;
+  color: #e2e8f0;
+  border-radius: 11px;
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.copy-btn svg {
+  width: 21px;
+  height: 21px;
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+pre {
+  margin: 0;
+  padding: 15px;
+  background: #071525;
+  border: 1px solid #294057;
+  border-radius: 12px;
+  overflow-x: auto;
+  white-space: pre;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #c7e2f5;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.command-group {
+  margin-bottom: 24px;
+}
+
+.command-group:last-child {
+  margin-bottom: 0;
+}
+
+.command-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.command-row pre {
+  flex: 1;
+  min-width: 0;
+}
+
+.output {
+  color: #90d7a5;
+  margin-top: 10px;
+}
+
+@media (min-width: 700px) {
+  .container {
+    padding: 35px 24px 70px;
+  }
+
+  .card {
+    padding: 26px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">← All Practicals</a>
+
+<h1>Practical 4</h1>
+
+<section class="card">
+  <h2>Aim</h2>
+  <p>Create a Database "Employee" and a table "Employee_details" inside the database. Insert 10 entries with column names: ID, Name, Country, Salary, Mobile. Use ALTER TABLE command: ADD | DROP | MODIFY | RENAME TO (new tablename).</p>
+</section>
+
+<section class="card">
+  <h2>Background Information</h2>
+
+  <p>In MySQL, the ALTER TABLE command is used to change the structure of an existing table. It allows us to add or remove columns, change their data types, or rename the table.</p>
+
+  <p>The four main operations are:</p>
+
+  <ul>
+    <li><strong>ADD:</strong> Adds a new column to a table.</li>
+    <li><strong>DROP:</strong> Removes a column from a table.</li>
+    <li><strong>MODIFY:</strong> Changes the data type or properties of a column.</li>
+    <li><strong>RENAME TO:</strong> Changes the name of a table.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <div class="code-header">
+    <h2>Source Code</h2>
+
+    <button class="copy-btn"
+      onclick="copyCode('sourceCode')"
+      aria-label="Copy source code"
+      title="Copy source code">
+
+      <svg viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="13" height="13" rx="2"/>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+
+<pre id="sourceCode">CREATE DATABASE Employee;
+USE Employee;
+
+CREATE TABLE Employee_details (
+    ID INT,
+    Name VARCHAR(50),
+    Country VARCHAR(30),
+    Salary INT,
+    Mobile VARCHAR(15)
+);
+
+INSERT INTO Employee_details VALUES
+(1, 'Rahul', 'India', 25000, '9876543210'),
+(2, 'Neha', 'India', 30000, '9876543211'),
+(3, 'Aman', 'USA', 45000, '9876543212'),
+(4, 'Priya', 'India', 35000, '9876543213'),
+(5, 'Rohit', 'Canada', 40000, '9876543214'),
+(6, 'Anjali', 'UK', 38000, '9876543215'),
+(7, 'Karan', 'India', 32000, '9876543216'),
+(8, 'Sneha', 'Australia', 42000, '9876543217'),
+(9, 'Vikas', 'USA', 50000, '9876543218'),
+(10, 'Pooja', 'India', 28000, '9876543219');</pre>
+
+</section>
+
+<section class="card">
+
+<h2>Commands and Outputs</h2>
+
+<div class="command-group">
+  <div class="command-row">
+    <pre id="cmd1">ALTER TABLE Employee_details ADD Email VARCHAR(50);</pre>
+    <button class="copy-btn" onclick="copyCode('cmd1')" aria-label="Copy SQL command" title="Copy command">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="13" height="13" rx="2"/>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+</div>
+
+<div class="command-group">
+  <div class="command-row">
+    <pre id="cmd2">ALTER TABLE Employee_details DROP Email;</pre>
+    <button class="copy-btn" onclick="copyCode('cmd2')" aria-label="Copy SQL command" title="Copy command">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="13" height="13" rx="2"/>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+</div>
+
+<div class="command-group">
+  <div class="command-row">
+    <pre id="cmd3">ALTER TABLE Employee_details MODIFY Salary BIGINT;</pre>
+    <button class="copy-btn" onclick="copyCode('cmd3')" aria-label="Copy SQL command" title="Copy command">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="13" height="13" rx="2"/>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+</div>
+
+<div class="command-group">
+  <div class="command-row">
+    <pre id="cmd4">ALTER TABLE Employee_details RENAME TO emp_details;</pre>
+    <button class="copy-btn" onclick="copyCode('cmd4')" aria-label="Copy SQL command" title="Copy command">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="13" height="13" rx="2"/>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </div>
+  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+</div>
+
+</section>
+
+</div>
+
+<script>
+async function copyCode(id) {
+  const element = document.getElementById(id);
+  const text = element.innerText.trim();
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+  } catch (error) {
+    // Try fallback method.
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+
+  textarea.focus();
+  textarea.select();
+
+  try {
+    document.execCommand("copy");
+  } finally {
+    textarea.remove();
+  }
+}
+</script>
+
+</body>
+</html>
