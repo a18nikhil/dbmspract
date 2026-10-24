@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practical 3 | DBMS Practical Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#080f20;--panel:#132138;--line:#263c57;--cyan:#4bcbe7;--text:#e2eaf5;--muted:#b7c7d9}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Inter,system-ui,-apple-system,'Segoe UI',sans-serif}.wrap{max-width:850px;margin:auto;padding:24px 14px 55px}.back{color:var(--cyan);text-decoration:none;font-weight:650;display:inline-block;margin:0 0 23px}h1{text-align:center;font-size:27px;margin:0 0 30px}section{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin:0 0 18px}h2{color:var(--cyan);font-size:21px;margin:0 0 16px}h3{font-size:17px;margin:0 0 10px;color:#e6f1ff}p{margin:0 0 12px}p:last-child{margin-bottom:0}ul{padding-left:22px;margin:8px 0}.codehead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.codehead h2,.codehead h3{margin:0}.copy{width:44px;height:44px;border:1px solid #4aabc7;border-radius:11px;background:#24405a;color:#eafaff;cursor:pointer;display:grid;place-items:center;flex-shrink:0}.copy:active{transform:scale(.96)}.copy svg{width:21px;height:21px}pre{background:#061322;border:1px solid #263e56;border-radius:14px;padding:14px;overflow-x:auto;white-space:pre;font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;color:#cce5f8;margin:0}code{font-family:inherit}.result{background:#071524;border:1px solid #2a435e;border-radius:12px;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,Consolas,monospace;color:#9de8b4;white-space:pre-wrap;overflow-wrap:anywhere}.block{margin-top:22px}.block:first-of-type{margin-top:0}.sub{color:var(--muted);font-size:14px;margin:0 0 10px}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(min-width:700px){.wrap{padding:32px 25px 70px}section{padding:28px}pre{font-size:14px;padding:18px}}
+.command-pair+.command-pair{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}.command-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}.command-row pre{flex:1;min-width:0}.command-row .copy{width:44px;height:44px}.command-pair .result{margin:0}
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="index.html">← All Practicals</a>
+<h1>Practical 3</h1>
+<section><h2>Aim</h2><p>Create a Database "students" and a table "student_details" inside the database. Insert 10 entries (ID, Name, City, Mobile). Use commands: Drop Table, Drop Database, Truncate Table.</p></section>
+<section><h2>Background Information</h2><p>MySQL stores data in databases and tables. Sometimes we need to remove records, a table, or an entire database. MySQL provides three commands for these tasks:</p><ul><li><strong>TRUNCATE TABLE</strong> removes all records from a table but keeps its structure.</li><li><strong>DROP TABLE</strong> removes the table along with its records and structure.</li><li><strong>DROP DATABASE</strong> removes the entire database, including all its tables.</li></ul><p>These commands permanently remove data or database objects, so they should be used carefully.</p></section>
+<section><div class="codehead"><h2>Source Code</h2><button class="copy" type="button" data-copy="setup" aria-label="Copy complete source code" title="Copy source code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div><pre id="setup"><code>CREATE DATABASE students;
+USE students;
+
+CREATE TABLE student_details (
+    ID INT,
+    Name VARCHAR(50),
+    City VARCHAR(30),
+    Mobile VARCHAR(15)
+);
+
+INSERT INTO student_details VALUES
+(1, 'Rahul', 'Mumbai', '9876543210'),
+(2, 'Priya', 'Delhi', '9876543211'),
+(3, 'Aman', 'Pune', '9876543212'),
+(4, 'Neha', 'Nashik', '9876543213'),
+(5, 'Karan', 'Thane', '9876543214'),
+(6, 'Priya', 'Surat', '9876543215'),
+(7, 'Rohit', 'Nagpur', '9876543216'),
+(8, 'Anjali', 'Jaipur', '9876543217'),
+(9, 'Vikas', 'Indore', '9876543218'),
+(10, 'Sneha', 'Bhopal', '9876543219');</code></pre></section>
+<section><h2>Commands and Outputs</h2>
+<div class="command-pair"><div class="command-row"><pre id="truncate"><code>TRUNCATE TABLE student_details;</code></pre><button class="copy" type="button" data-copy="truncate" aria-label="Copy SQL command" title="Copy SQL command"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div><div class="result">Query OK, 0 rows affected (0.00 sec)</div></div>
+<div class="command-pair"><div class="command-row"><pre id="droptable"><code>DROP TABLE student_details;</code></pre><button class="copy" type="button" data-copy="droptable" aria-label="Copy SQL command" title="Copy SQL command"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div><div class="result">Query OK, 0 rows affected (0.00 sec)</div></div>
+<div class="command-pair"><div class="command-row"><pre id="dropdb"><code>DROP DATABASE students;</code></pre><button class="copy" type="button" data-copy="dropdb" aria-label="Copy SQL command" title="Copy SQL command"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div><div class="result">Query OK, 0 rows affected (0.00 sec)</div></div>
+</section>
+<div id="copy-status" class="sr" role="status" aria-live="polite"></div>
+</main>
+<script>
+async function copyText(text){
+  if(navigator.clipboard && window.isSecureContext){try{await navigator.clipboard.writeText(text);return true}catch(e){}}
+  const input=document.createElement('textarea');input.value=text;input.setAttribute('readonly','');input.style.position='fixed';input.style.left='-9999px';input.style.top='0';document.body.appendChild(input);input.focus();input.select();input.setSelectionRange(0,input.value.length);
+  let ok=false;try{ok=document.execCommand('copy')}catch(e){}input.remove();return ok;
+}
+document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{
+  const el=document.getElementById(button.dataset.copy);const value=el.innerText.trim();const ok=await copyText(value);
+  document.getElementById('copy-status').textContent=ok?'Code copied to clipboard.':'Copy was blocked by this browser.';
+  if(!ok){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(el);selection.removeAllRanges();selection.addRange(range)}
+}));
+</script>
+</body>
+</html>
