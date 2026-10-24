@@ -8,193 +8,243 @@
 
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  background: #080f20;
-  color: #e2e8f0;
-  font-family: Arial, sans-serif;
-  line-height: 1.7;
+    margin: 0;
+    background: #080f20;
+    color: #e2e8f0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.7;
 }
 
 .container {
-  max-width: 850px;
-  margin: auto;
-  padding: 22px 14px 60px;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 22px 14px 60px;
 }
 
 .back {
-  display: inline-block;
-  color: #4cc9e8;
-  text-decoration: none;
-  font-weight: 600;
-  margin-bottom: 20px;
+    display: inline-block;
+    color: #4cc9e8;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
 h1 {
-  text-align: center;
-  font-size: 28px;
-  margin: 12px 0 30px;
+    text-align: center;
+    font-size: 28px;
+    margin: 12px 0 30px;
+    line-height: 1.3;
 }
 
 .card {
-  background: #142238;
-  border: 1px solid #263a53;
-  border-radius: 17px;
-  padding: 20px;
-  margin-bottom: 18px;
+    background: #142238;
+    border: 1px solid #263a53;
+    border-radius: 17px;
+    padding: 20px;
+    margin-bottom: 18px;
+    min-width: 0;
 }
 
 h2 {
-  color: #4cc9e8;
-  font-size: 21px;
-  margin: 0 0 16px;
+    color: #4cc9e8;
+    font-size: 21px;
+    margin: 0 0 16px;
+    line-height: 1.4;
 }
 
 p {
-  margin: 0 0 12px;
+    margin: 0 0 12px;
+    font-size: 16px;
 }
 
 p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 ul {
-  padding-left: 22px;
-  margin: 10px 0 0;
+    padding-left: 22px;
+    margin: 10px 0 0;
+}
+
+li {
+    margin-bottom: 6px;
 }
 
 .code-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .code-header h2 {
-  margin: 0;
+    margin: 0;
 }
 
 .copy-btn {
-  background: #24445e;
-  border: 1px solid #4cc9e8;
-  color: #e2e8f0;
-  border-radius: 11px;
-  width: 46px;
-  height: 46px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
+    background: #24445e;
+    border: 1px solid #4cc9e8;
+    color: #e2e8f0;
+    border-radius: 11px;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
 }
 
 .copy-btn svg {
-  width: 21px;
-  height: 21px;
+    width: 21px;
+    height: 21px;
 }
 
 .copy-btn:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 pre {
-  margin: 0;
-  padding: 15px;
-  background: #071525;
-  border: 1px solid #294057;
-  border-radius: 12px;
-  overflow-x: auto;
-  white-space: pre;
-  font-size: 13px;
-  line-height: 1.75;
-  color: #c7e2f5;
-  font-family: Consolas, "Courier New", monospace;
+    margin: 0;
+    padding: 15px;
+    background: #071525;
+    border: 1px solid #294057;
+    border-radius: 12px;
+    overflow-x: auto;
+    white-space: pre;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #c7e2f5;
+    font-family: Consolas, "Courier New", monospace;
+    tab-size: 4;
+    -webkit-overflow-scrolling: touch;
 }
 
 .command-group {
-  margin-bottom: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #263a53;
 }
 
 .command-group:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .command-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .command-row pre {
-  flex: 1;
-  min-width: 0;
+    flex: 1;
+    min-width: 0;
 }
 
 .output {
-  color: #90d7a5;
-  margin-top: 10px;
+    color: #90d7a5;
+    margin-top: 10px;
 }
 
 @media (min-width: 700px) {
-  .container {
-    padding: 35px 24px 70px;
-  }
+    .container {
+        padding: 35px 24px 70px;
+    }
 
-  .card {
-    padding: 26px;
-  }
+    .card {
+        padding: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 14px 50px;
+    }
+
+    .card {
+        padding: 19px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    pre {
+        font-size: 12.5px;
+        padding: 13px;
+    }
+
+    .copy-btn {
+        width: 40px;
+        height: 40px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<main class="container">
 
 <a href="index.html" class="back">← All Practicals</a>
 
 <h1>Practical 4</h1>
 
 <section class="card">
-  <h2>Aim</h2>
-  <p>Create a Database "Employee" and a table "Employee_details" inside the database. Insert 10 entries with column names: ID, Name, Country, Salary, Mobile. Use ALTER TABLE command: ADD | DROP | MODIFY | RENAME TO (new tablename).</p>
+    <h2>Aim</h2>
+
+    <p>Create a Database "Employee" and a table "Employee_details" inside the database. Insert 10 entries with column names: ID, Name, Country, Salary, Mobile. Use ALTER TABLE command: ADD | DROP | MODIFY | RENAME TO (new tablename).</p>
 </section>
 
 <section class="card">
-  <h2>Background Information</h2>
+    <h2>Background Information</h2>
 
-  <p>In MySQL, the ALTER TABLE command is used to change the structure of an existing table. It allows us to add or remove columns, change their data types, or rename the table.</p>
+    <p>In MySQL, the ALTER TABLE command is used to change the structure of an existing table. It allows us to add or remove columns, change their data types, or rename the table.</p>
 
-  <p>The four main operations are:</p>
+    <p>The four main operations are:</p>
 
-  <ul>
-    <li><strong>ADD:</strong> Adds a new column to a table.</li>
-    <li><strong>DROP:</strong> Removes a column from a table.</li>
-    <li><strong>MODIFY:</strong> Changes the data type or properties of a column.</li>
-    <li><strong>RENAME TO:</strong> Changes the name of a table.</li>
-  </ul>
+    <ul>
+        <li><strong>ADD:</strong> Adds a new column to a table.</li>
+        <li><strong>DROP:</strong> Removes a column from a table.</li>
+        <li><strong>MODIFY:</strong> Changes the data type or properties of a column.</li>
+        <li><strong>RENAME TO:</strong> Changes the name of a table.</li>
+    </ul>
 </section>
 
 <section class="card">
-  <div class="code-header">
-    <h2>Source Code</h2>
 
-    <button class="copy-btn"
-      onclick="copyCode('sourceCode')"
-      aria-label="Copy source code"
-      title="Copy source code">
+    <div class="code-header">
+        <h2>Source Code</h2>
 
-      <svg viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="8" y="8" width="13" height="13" rx="2"/>
-        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-      </svg>
-    </button>
-  </div>
+        <button class="copy-btn"
+                type="button"
+                onclick="copyCode('sourceCode')"
+                aria-label="Copy complete source code"
+                title="Copy source code">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 aria-hidden="true">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+
+        </button>
+    </div>
 
 <pre id="sourceCode">CREATE DATABASE Employee;
 USE Employee;
@@ -223,92 +273,157 @@ INSERT INTO Employee_details VALUES
 
 <section class="card">
 
-<h2>Commands and Outputs</h2>
+    <h2>Commands and Outputs</h2>
 
-<div class="command-group">
-  <div class="command-row">
-    <pre id="cmd1">ALTER TABLE Employee_details ADD Email VARCHAR(50);</pre>
-    <button class="copy-btn" onclick="copyCode('cmd1')" aria-label="Copy SQL command" title="Copy command">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="8" y="8" width="13" height="13" rx="2"/>
-        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-      </svg>
-    </button>
-  </div>
-  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
-</div>
+    <div class="command-group">
 
-<div class="command-group">
-  <div class="command-row">
-    <pre id="cmd2">ALTER TABLE Employee_details DROP Email;</pre>
-    <button class="copy-btn" onclick="copyCode('cmd2')" aria-label="Copy SQL command" title="Copy command">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="8" y="8" width="13" height="13" rx="2"/>
-        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-      </svg>
-    </button>
-  </div>
-  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
-</div>
+        <div class="command-row">
 
-<div class="command-group">
-  <div class="command-row">
-    <pre id="cmd3">ALTER TABLE Employee_details MODIFY Salary BIGINT;</pre>
-    <button class="copy-btn" onclick="copyCode('cmd3')" aria-label="Copy SQL command" title="Copy command">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="8" y="8" width="13" height="13" rx="2"/>
-        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-      </svg>
-    </button>
-  </div>
-  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
-</div>
+            <pre id="cmd1">ALTER TABLE Employee_details ADD Email VARCHAR(50);</pre>
 
-<div class="command-group">
-  <div class="command-row">
-    <pre id="cmd4">ALTER TABLE Employee_details RENAME TO emp_details;</pre>
-    <button class="copy-btn" onclick="copyCode('cmd4')" aria-label="Copy SQL command" title="Copy command">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="8" y="8" width="13" height="13" rx="2"/>
-        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-      </svg>
-    </button>
-  </div>
-  <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
-</div>
+            <button class="copy-btn"
+                    type="button"
+                    onclick="copyCode('cmd1')"
+                    aria-label="Copy ADD command"
+                    title="Copy command">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <rect x="8" y="8" width="13" height="13" rx="2"/>
+                    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+                </svg>
+            </button>
+
+        </div>
+
+        <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+
+    </div>
+
+    <div class="command-group">
+
+        <div class="command-row">
+
+            <pre id="cmd2">ALTER TABLE Employee_details DROP Email;</pre>
+
+            <button class="copy-btn"
+                    type="button"
+                    onclick="copyCode('cmd2')"
+                    aria-label="Copy DROP command"
+                    title="Copy command">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <rect x="8" y="8" width="13" height="13" rx="2"/>
+                    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+                </svg>
+            </button>
+
+        </div>
+
+        <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+
+    </div>
+
+    <div class="command-group">
+
+        <div class="command-row">
+
+            <pre id="cmd3">ALTER TABLE Employee_details MODIFY Salary BIGINT;</pre>
+
+            <button class="copy-btn"
+                    type="button"
+                    onclick="copyCode('cmd3')"
+                    aria-label="Copy MODIFY command"
+                    title="Copy command">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <rect x="8" y="8" width="13" height="13" rx="2"/>
+                    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+                </svg>
+            </button>
+
+        </div>
+
+        <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+
+    </div>
+
+    <div class="command-group">
+
+        <div class="command-row">
+
+            <pre id="cmd4">ALTER TABLE Employee_details RENAME TO emp_details;</pre>
+
+            <button class="copy-btn"
+                    type="button"
+                    onclick="copyCode('cmd4')"
+                    aria-label="Copy RENAME command"
+                    title="Copy command">
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <rect x="8" y="8" width="13" height="13" rx="2"/>
+                    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+                </svg>
+            </button>
+
+        </div>
+
+        <pre class="output">Query OK, 0 rows affected (0.00 sec)</pre>
+
+    </div>
 
 </section>
 
-</div>
+</main>
 
 <script>
 async function copyCode(id) {
-  const element = document.getElementById(id);
-  const text = element.innerText.trim();
+    const element = document.getElementById(id);
+    const text = element.textContent.trim();
 
-  try {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-      return;
+        try {
+            await navigator.clipboard.writeText(text);
+            return;
+        } catch (error) {
+            // Use fallback below.
+        }
     }
-  } catch (error) {
-    // Try fallback method.
-  }
 
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
 
-  textarea.focus();
-  textarea.select();
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    textarea.style.top = "0";
 
-  try {
-    document.execCommand("copy");
-  } finally {
+    document.body.appendChild(textarea);
+
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+
+    try {
+        copied = document.execCommand("copy");
+    } catch (error) {
+        copied = false;
+    }
+
     textarea.remove();
-  }
+
+    if (!copied) {
+        alert("Automatic copying is unavailable. Please select and copy the SQL code manually.");
+    }
 }
 </script>
 
