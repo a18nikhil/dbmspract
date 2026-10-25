@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical 6 | DBMS Practical Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#080f20;--panel:#132138;--line:#263c57;--cyan:#4bcbe7;--text:#e2eaf5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+.wrap{max-width:850px;margin:auto;padding:24px 14px 55px}
+.back{color:var(--cyan);text-decoration:none;font-weight:650;display:inline-block;margin:0 0 23px}
+h1{text-align:center;font-size:27px;margin:0 0 30px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin:0 0 18px;min-width:0}
+h2{color:var(--cyan);font-size:21px;margin:0 0 16px}p{margin:0 0 12px}p:last-child{margin-bottom:0}
+ul{padding-left:22px;margin:8px 0}
+.codehead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.codehead h2{margin:0}
+.copy{width:44px;height:44px;border:1px solid #4aabc7;border-radius:11px;background:#24405a;color:#eafaff;cursor:pointer;display:grid;place-items:center;flex-shrink:0}.copy:active{transform:scale(.96)}.copy svg{width:21px;height:21px}
+pre{background:#061322;border:1px solid #263e56;border-radius:14px;padding:14px;overflow-x:auto;white-space:pre;font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;color:#cce5f8;margin:0;tab-size:4}code{font-family:inherit}
+.result{background:#071524;border:1px solid #2a435e;border-radius:12px;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,Consolas,monospace;color:#9de8b4;white-space:pre;margin:0}
+.command-pair+.command-pair{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}.command-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}.command-row pre{flex:1;min-width:0}
+@media(min-width:700px){.wrap{padding:32px 25px 70px}section{padding:28px}pre{font-size:14px;padding:18px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="index.html">← All Practicals</a>
+<h1>Practical 6</h1>
+<section><h2>Aim</h2><p>Create a Database and use SELECT commands: Select (all columns), Select (specific columns), Select (with WHERE clause), Select (with GROUP BY clause), Select (DISTINCT clause), Select (with HAVING clause), Select (with ORDER BY clause).</p></section>
+<section><h2>Background Information</h2>
+<p>In MySQL, the SELECT command is used to retrieve data from a table. It can display all records or only the records that meet certain conditions.</p>
+<ul><li><strong>SELECT *:</strong> Displays all columns.</li><li><strong>SELECT specific columns:</strong> Displays only the selected columns.</li><li><strong>WHERE:</strong> Filters records using a condition.</li><li><strong>GROUP BY:</strong> Groups records with the same value.</li><li><strong>DISTINCT:</strong> Removes duplicate values from the result.</li><li><strong>HAVING:</strong> Filters grouped results.</li><li><strong>ORDER BY:</strong> Sorts records in ascending or descending order.</li></ul>
+</section>
+<section><div class="codehead"><h2>Source Code</h2><button class="copy" onclick="copyCode('sourceCode')" aria-label="Copy source code" title="Copy source code"></button></div>
+<pre><code id="sourceCode">CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+    ID INT,
+    Name VARCHAR(50),
+    City VARCHAR(30),
+    Marks INT
+);
+
+INSERT INTO student VALUES
+(1, 'Rahul', 'Mumbai', 80),
+(2, 'Neha', 'Delhi', 75),
+(3, 'Aman', 'Mumbai', 90),
+(4, 'Priya', 'Pune', 85),
+(5, 'Rohit', 'Nagpur', 70),
+(6, 'Sneha', 'Mumbai', 88),
+(7, 'Vikas', 'Delhi', 78),
+(8, 'Anjali', 'Pune', 82),
+(9, 'Karan', 'Surat', 76),
+(10, 'Pooja', 'Nagpur', 84);</code></pre></section>
+<section><h2>Commands and Outputs</h2>
+<div id="examples"></div>
+</section>
+</main>
+<script>
+const students=[
+{ID:1,Name:'Rahul',City:'Mumbai',Marks:80},
+{ID:2,Name:'Neha',City:'Delhi',Marks:75},
+{ID:3,Name:'Aman',City:'Mumbai',Marks:90},
+{ID:4,Name:'Priya',City:'Pune',Marks:85},
+{ID:5,Name:'Rohit',City:'Nagpur',Marks:70},
+{ID:6,Name:'Sneha',City:'Mumbai',Marks:88},
+{ID:7,Name:'Vikas',City:'Delhi',Marks:78},
+{ID:8,Name:'Anjali',City:'Pune',Marks:82},
+{ID:9,Name:'Karan',City:'Surat',Marks:76},
+{ID:10,Name:'Pooja',City:'Nagpur',Marks:84}
+];
+const counts=Object.entries(students.reduce((a,s)=>(a[s.City]=(a[s.City]||0)+1,a),{})).sort((a,b)=>a[0].localeCompare(b[0]));
+const examples=[
+['SELECT * FROM student;', ['ID','Name','City','Marks'],students],
+['SELECT Name, City FROM student;', ['Name','City'],students],
+["SELECT * FROM student WHERE City = 'Mumbai';",['ID','Name','City','Marks'],students.filter(s=>s.City==='Mumbai')],
+['SELECT City, COUNT(*) FROM student GROUP BY City;', ['City','COUNT(*)'],counts.map(([City,n])=>({City,'COUNT(*)':n}))],
+['SELECT DISTINCT City FROM student;', ['City'],[...new Set(students.map(s=>s.City))].map(City=>({City}))],
+['SELECT City, COUNT(*) FROM student GROUP BY City HAVING COUNT(*) > 1;', ['City','COUNT(*)'],counts.filter(([,n])=>n>1).map(([City,n])=>({City,'COUNT(*)':n}))],
+['SELECT * FROM student ORDER BY Marks DESC;', ['ID','Name','City','Marks'],[...students].sort((a,b)=>b.Marks-a.Marks)]
+];
+const icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>';
+document.querySelectorAll('.copy').forEach(b=>b.innerHTML=icon);
+function mysqlTable(columns,rows){
+ const widths=columns.map(c=>Math.max(c.length,...rows.map(r=>String(r[c]).length)));
+ const border='+'+widths.map(w=>'-'.repeat(w+2)).join('+')+'+';
+ const line=values=>'|'+values.map((v,i)=>' '+String(v).padEnd(widths[i])+' ').join('|')+'|';
+ return [border,line(columns),border,...rows.map(r=>line(columns.map(c=>r[c]))),border,rows.length+' '+(rows.length===1?'row':'rows')+' in set (0.00 sec)'].join('\n');
+}
+const container=document.getElementById('examples');
+examples.forEach(([sql,columns,rows],i)=>{
+ const pair=document.createElement('div');pair.className='command-pair';
+ const commandRow=document.createElement('div');commandRow.className='command-row';
+ const command=document.createElement('pre');const code=document.createElement('code');code.id='cmd'+(i+1);code.textContent=sql;command.append(code);
+ const btn=document.createElement('button');btn.className='copy';btn.type='button';btn.title='Copy command';btn.setAttribute('aria-label','Copy SQL command');btn.innerHTML=icon;btn.addEventListener('click',()=>copyCode(code.id));
+ commandRow.append(command,btn);
+ const output=document.createElement('pre');output.className='result';output.textContent=mysqlTable(columns,rows);
+ pair.append(commandRow,output);container.append(pair);
+});
+async function copyCode(id){
+ const text=document.getElementById(id).textContent.trim();
+ if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(text);return}catch(e){}}
+ const field=document.createElement('textarea');field.value=text;field.readOnly=true;field.style.position='fixed';field.style.left='-9999px';document.body.appendChild(field);field.select();field.setSelectionRange(0,field.value.length);
+ let success=false;try{success=document.execCommand('copy')}catch(e){}field.remove();
+ if(!success)alert('Copy unavailable. Please select and copy the code manually.');
+}
+</script>
+</body>
+</html>
