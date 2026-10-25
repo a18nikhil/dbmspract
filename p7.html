@@ -6,7 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practical 7 | DBMS Practical Lab</title>
 
-<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+<script>
+(function () {
+    try {
+        const theme = localStorage.getItem('dbmspract-theme');
+        if (theme === 'light' || theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    } catch (e) {}
+})();
+</script>
+
 <style>
 :root {
     color-scheme: dark;
@@ -35,14 +45,6 @@ body {
     padding: 24px 14px 55px;
 }
 
-.back {
-    color: var(--cyan);
-    text-decoration: none;
-    font-weight: 650;
-    display: inline-block;
-    margin: 0 0 23px;
-}
-
 h1 {
     text-align: center;
     font-size: 27px;
@@ -54,7 +56,7 @@ section {
     border: 1px solid var(--line);
     border-radius: 10px;
     padding: 20px;
-    margin: 0 0 18px;
+    margin-bottom: 18px;
 }
 
 h2 {
@@ -92,26 +94,41 @@ li {
     margin: 0;
 }
 
+/* Identical copy button styling throughout */
+
 .copy {
     width: 44px;
     height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
     border: 1px solid #3b638b;
     border-radius: 11px;
     background: #212d3b;
     color: #e6edf3;
     cursor: pointer;
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.copy svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+    flex: 0 0 auto;
 }
 
 .copy:active {
     transform: scale(.96);
 }
 
-.copy svg {
-    width: 21px;
-    height: 21px;
+.copy:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
 }
 
 pre {
@@ -122,10 +139,8 @@ pre {
     overflow-x: auto;
     white-space: pre;
     font: 13px/1.75 ui-monospace,
-          SFMono-Regular,
-          Consolas,
-          'Liberation Mono',
-          monospace;
+          SFMono-Regular, Consolas,
+          'Liberation Mono', monospace;
     color: #c9d1d9;
     margin: 0;
 }
@@ -140,11 +155,10 @@ code {
     border-radius: 10px;
     padding: 14px;
     overflow-x: auto;
-    font: 13px/1.6 ui-monospace,
-          Consolas,
-          monospace;
-    color: #3fb950;
     white-space: pre;
+    font: 13px/1.6 ui-monospace,
+          Consolas, monospace;
+    color: #3fb950;
     margin: 0;
 }
 
@@ -156,14 +170,49 @@ code {
 
 .command-row {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
 .command-row pre {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
+}
+
+a.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    margin-bottom: 23px;
+    border: 1px solid #3b638b;
+    border-radius: 10px;
+    background: #212d3b;
+    color: #e6edf3;
+    text-decoration: none;
+    font-weight: 650;
+}
+
+.practical-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.practical-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #3b638b;
+    border-radius: 10px;
+    background: #212d3b;
+    color: #e6edf3;
+    font-weight: 650;
+    text-decoration: none;
 }
 
 @media (min-width: 700px) {
@@ -181,100 +230,130 @@ code {
     }
 }
 
-/* Practical navigation buttons */
-a.back {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 9px 15px;
-    border: 1px solid #3b638b;
-    border-radius: 10px;
-    background: #212d3b;
-    color: #e6edf3;
-    text-decoration: none;
-    font-weight: 650;
-    transition: background .2s, border-color .2s;
-}
-a.back:hover, a.back:focus-visible,
-.practical-nav a:hover, .practical-nav a:focus-visible {
-    background: #2a3a4b;
-    border-color: #79c0ff;
-    outline: none;
-}
-.practical-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-top: 26px;
-}
-.practical-nav a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 15px;
-    border: 1px solid #3b638b;
-    border-radius: 10px;
-    background: #212d3b;
-    color: #e6edf3;
-    font-weight: 650;
-    text-decoration: none;
-    transition: background .2s, border-color .2s;
-}
-
-/* Mobile readability adjustments only */
 @media (max-width: 699px) {
-    body { font-size: 14px; line-height: 1.65; }
-    h1 { font-size: 23px; }
-    h2 { font-size: 19px; }
-    section p, section li { font-size: 14px; line-height: 1.65; }
-    pre, pre code, .result { font-size: 12px; }
-    .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
+    body {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    section p,
+    section li {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    pre,
+    pre code,
+    .result {
+        font-size: 12px;
+    }
+
+    .back,
+    .practical-nav a {
+        font-size: 13px;
+    }
 }
 </style>
+
 <link rel="stylesheet" href="theme.css">
+
+<!-- Ensure every copy button stays consistent in both themes -->
+<style>
+.copy {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex: 0 0 44px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.copy svg {
+    display: block !important;
+    width: 21px !important;
+    height: 21px !important;
+}
+</style>
+
 </head>
 
 <body>
 
 <main class="wrap">
 
-<a class="back" href="index.html">← All Practicals</a>
+<a class="back" href="index.html">
+    ← All Practicals
+</a>
 
 <h1>Practical 7</h1>
 
 <section>
     <h2>Aim</h2>
 
-    <p>Create a Database and use SELECT with WHERE clause: WHERE with logical operators, WHERE with comparison operators, WHERE with BETWEEN operator, WHERE with LIKE operator, WHERE with IN operator.</p>
+    <p>
+        Create a Database and use SELECT with WHERE clause:
+        WHERE with logical operators,
+        WHERE with comparison operators,
+        WHERE with BETWEEN operator,
+        WHERE with LIKE operator,
+        WHERE with IN operator.
+    </p>
 </section>
 
 <section>
     <h2>Background Information</h2>
 
-    <p>In MySQL, the WHERE clause is used with SELECT to display only those records that match a given condition.</p>
+    <p>
+        In MySQL, the WHERE clause is used with SELECT
+        to display only those records that match a given condition.
+    </p>
 
     <ul>
-        <li><strong>Logical operators:</strong> AND, OR and NOT combine or change conditions.</li>
-        <li><strong>Comparison operators:</strong> =, &gt;, &lt;, &gt;=, &lt;= and &lt;&gt; compare values.</li>
-        <li><strong>BETWEEN:</strong> Selects values within a range, including both limits.</li>
-        <li><strong>LIKE:</strong> Searches for a pattern in text. The % symbol matches any number of characters.</li>
-        <li><strong>IN:</strong> Selects values that match any value in a given list.</li>
+        <li>
+            <strong>Logical operators:</strong>
+            AND, OR and NOT combine or change conditions.
+        </li>
+        <li>
+            <strong>Comparison operators:</strong>
+            =, &gt;, &lt;, &gt;=, &lt;= and &lt;&gt; compare values.
+        </li>
+        <li>
+            <strong>BETWEEN:</strong>
+            Selects values within a range, including both limits.
+        </li>
+        <li>
+            <strong>LIKE:</strong>
+            Searches for a pattern in text.
+            The % symbol matches any number of characters.
+        </li>
+        <li>
+            <strong>IN:</strong>
+            Selects values that match any value in a given list.
+        </li>
     </ul>
 </section>
 
 <section>
+
     <div class="codehead">
         <h2>Source Code</h2>
-        <button class="copy" type="button"
-                onclick="copyCode('sourceCode')"
-                aria-label="Copy source code">
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-            </svg>
+
+        <button class="copy"
+                type="button"
+                data-copy="sourceCode"
+                aria-label="Copy source code"
+                title="Copy source code">
         </button>
     </div>
 
@@ -299,26 +378,30 @@ INSERT INTO student VALUES
 (8, 'Anjali', 'Pune', 82),
 (9, 'Karan', 'Surat', 76),
 (10, 'Pooja', 'Nagpur', 84);</code></pre>
+
 </section>
 
 <section>
+
 <h2>Commands and Outputs</h2>
 
-<!-- 1. LOGICAL OPERATOR -->
+<!-- Logical Operators -->
+
 <div class="command-pair">
+
     <div class="command-row">
-        <pre><code id="cmd1">SELECT * FROM student WHERE City = 'Mumbai' AND Marks > 80;</code></pre>
-        <button class="copy" type="button"
-                onclick="copyCode('cmd1')"
-                aria-label="Copy logical operator query">
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-            </svg>
+
+        <pre><code id="cmd1">SELECT * FROM student WHERE City = 'Mumbai' AND Marks &gt; 80;</code></pre>
+
+        <button class="copy"
+                type="button"
+                data-copy="cmd1"
+                aria-label="Copy logical operators command"
+                title="Copy command">
         </button>
+
     </div>
+
 <pre class="result">+----+-------+--------+-------+
 | ID | Name  | City   | Marks |
 +----+-------+--------+-------+
@@ -326,23 +409,26 @@ INSERT INTO student VALUES
 |  6 | Sneha | Mumbai |    88 |
 +----+-------+--------+-------+
 2 rows in set (0.00 sec)</pre>
+
 </div>
 
-<!-- 2. COMPARISON OPERATOR -->
+<!-- Comparison Operators -->
+
 <div class="command-pair">
+
     <div class="command-row">
-        <pre><code id="cmd2">SELECT * FROM student WHERE Marks > 80;</code></pre>
-        <button class="copy" type="button"
-                onclick="copyCode('cmd2')"
-                aria-label="Copy comparison operator query">
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-            </svg>
+
+        <pre><code id="cmd2">SELECT * FROM student WHERE Marks &gt; 80;</code></pre>
+
+        <button class="copy"
+                type="button"
+                data-copy="cmd2"
+                aria-label="Copy comparison operators command"
+                title="Copy command">
         </button>
+
     </div>
+
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -353,23 +439,26 @@ INSERT INTO student VALUES
 | 10 | Pooja  | Nagpur |    84 |
 +----+--------+--------+-------+
 5 rows in set (0.00 sec)</pre>
+
 </div>
 
-<!-- 3. BETWEEN OPERATOR -->
+<!-- BETWEEN Operator -->
+
 <div class="command-pair">
+
     <div class="command-row">
+
         <pre><code id="cmd3">SELECT * FROM student WHERE Marks BETWEEN 70 AND 85;</code></pre>
-        <button class="copy" type="button"
-                onclick="copyCode('cmd3')"
-                aria-label="Copy BETWEEN query">
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-            </svg>
+
+        <button class="copy"
+                type="button"
+                data-copy="cmd3"
+                aria-label="Copy BETWEEN command"
+                title="Copy command">
         </button>
+
     </div>
+
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -383,23 +472,26 @@ INSERT INTO student VALUES
 | 10 | Pooja  | Nagpur |    84 |
 +----+--------+--------+-------+
 8 rows in set (0.00 sec)</pre>
+
 </div>
 
-<!-- 4. LIKE OPERATOR -->
+<!-- LIKE Operator -->
+
 <div class="command-pair">
+
     <div class="command-row">
+
         <pre><code id="cmd4">SELECT * FROM student WHERE Name LIKE 'A%';</code></pre>
-        <button class="copy" type="button"
-                onclick="copyCode('cmd4')"
-                aria-label="Copy LIKE query">
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-            </svg>
+
+        <button class="copy"
+                type="button"
+                data-copy="cmd4"
+                aria-label="Copy LIKE command"
+                title="Copy command">
         </button>
+
     </div>
+
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -407,23 +499,26 @@ INSERT INTO student VALUES
 |  8 | Anjali | Pune   |    82 |
 +----+--------+--------+-------+
 2 rows in set (0.00 sec)</pre>
+
 </div>
 
-<!-- 5. IN OPERATOR -->
+<!-- IN Operator -->
+
 <div class="command-pair">
+
     <div class="command-row">
+
         <pre><code id="cmd5">SELECT * FROM student WHERE City IN ('Mumbai', 'Pune');</code></pre>
-        <button class="copy" type="button"
-                onclick="copyCode('cmd5')"
-                aria-label="Copy IN query">
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0 2 2h3"/>
-            </svg>
+
+        <button class="copy"
+                type="button"
+                data-copy="cmd5"
+                aria-label="Copy IN command"
+                title="Copy command">
         </button>
+
     </div>
+
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -434,52 +529,104 @@ INSERT INTO student VALUES
 |  8 | Anjali | Pune   |    82 |
 +----+--------+--------+-------+
 5 rows in set (0.00 sec)</pre>
+
 </div>
 
 </section>
 
-<nav class="practical-nav" aria-label="Practical navigation">
+<nav class="practical-nav"
+     aria-label="Practical navigation">
+
     <a href="p6.html">← Practical 6</a>
+
     <a href="p8.html">Practical 8 →</a>
+
 </nav>
+
 </main>
 
 <script>
-async function copyCode(id) {
+const COPY_ICON = `
+<svg viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     aria-hidden="true">
+    <rect x="8" y="8" width="13" height="13" rx="2"/>
+    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+</svg>`;
+
+const CHECK_ICON = `
+<svg viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     aria-hidden="true">
+    <path d="M20 6 9 17l-5-5"/>
+</svg>`;
+
+document.querySelectorAll("button.copy").forEach(button => {
+    button.innerHTML = COPY_ICON;
+
+    button.addEventListener("click", () => {
+        copyCode(button.dataset.copy, button);
+    });
+});
+
+async function copyCode(id, button) {
     const element = document.getElementById(id);
+
+    if (!element) return;
+
     const text = element.textContent.trim();
+    let copied = false;
 
     if (navigator.clipboard && window.isSecureContext) {
         try {
             await navigator.clipboard.writeText(text);
-            return;
-        } catch (error) {
-            // Use fallback.
-        }
+            copied = true;
+        } catch (error) {}
     }
-
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-
-    document.body.appendChild(textarea);
-    textarea.focus();
-    textarea.select();
-    textarea.setSelectionRange(0, textarea.value.length);
-
-    let copied = false;
-
-    try {
-        copied = document.execCommand("copy");
-    } catch (error) {
-        copied = false;
-    }
-
-    textarea.remove();
 
     if (!copied) {
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+
+        try {
+            copied = document.execCommand("copy");
+        } catch (error) {
+            copied = false;
+        }
+
+        textarea.remove();
+    }
+
+    if (copied) {
+        clearTimeout(button.copyTimer);
+
+        button.innerHTML = CHECK_ICON;
+        button.setAttribute("aria-label", "Copied");
+        button.title = "Copied";
+
+        button.copyTimer = setTimeout(() => {
+            button.innerHTML = COPY_ICON;
+            button.setAttribute("aria-label", "Copy command");
+            button.title = "Copy command";
+        }, 1200);
+    } else {
         alert("Copy unavailable. Please select and copy the code manually.");
     }
 }
