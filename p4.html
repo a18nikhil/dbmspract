@@ -182,6 +182,57 @@ code {
         padding: 18px;
     }
 }
+
+/* Practical navigation buttons */
+a.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    border: 1px solid #4aabc7;
+    border-radius: 10px;
+    background: #24405a;
+    color: #eafaff;
+    text-decoration: none;
+    font-weight: 650;
+    transition: background .2s, border-color .2s;
+}
+a.back:hover, a.back:focus-visible,
+.practical-nav a:hover, .practical-nav a:focus-visible {
+    background: #315875;
+    border-color: #64dcf2;
+    outline: none;
+}
+.practical-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+.practical-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #4aabc7;
+    border-radius: 10px;
+    background: #24405a;
+    color: #eafaff;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background .2s, border-color .2s;
+}
+
+/* Mobile readability adjustments only */
+@media (max-width: 699px) {
+    body { font-size: 14px; line-height: 1.65; }
+    h1 { font-size: 23px; }
+    h2 { font-size: 19px; }
+    section p, section li { font-size: 14px; line-height: 1.65; }
+    pre, pre code, .result { font-size: 12px; }
+    .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
+}
 </style>
 </head>
 
@@ -394,6 +445,10 @@ INSERT INTO Employee_details VALUES
 
 </section>
 
+<nav class="practical-nav" aria-label="Practical navigation">
+    <a href="p3.html">← Practical 3</a>
+    <a href="p5.html">Practical 5 →</a>
+</nav>
 </main>
 
 <script>

@@ -6,6 +6,57 @@
 <title>Practical 2 | DBMS Practical Lab</title>
 <style>
 :root{color-scheme:dark;--bg:#080f20;--card:#142238;--line:#253b57;--cyan:#49c7e8;--text:#e2e9f4}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Arial,Helvetica,sans-serif}.wrap{max-width:850px;margin:auto;padding:24px 14px 50px}.back{color:var(--cyan);text-decoration:none;font-weight:700}h1{text-align:center;font-size:29px;margin:24px 0 30px}section{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:20px;margin:17px 0}h2{color:var(--cyan);font-size:21px;margin:0 0 14px}p{margin:0 0 14px}p:last-child{margin-bottom:0}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.head h2{margin:0}.copy{width:48px;height:48px;border:1px solid #49c7e8;border-radius:11px;background:#24425d;color:#f1f7ff;display:grid;place-items:center;cursor:pointer}.copy:focus-visible{outline:3px solid #fff;outline-offset:2px}pre{background:#071424;border:1px solid #29415a;border-radius:12px;padding:14px;overflow-x:auto;margin:0;color:#d3e8fa;font:13px/1.85 Consolas,'Courier New',monospace;tab-size:4}table{width:100%;border-collapse:collapse;min-width:610px;font-size:14px}th,td{padding:11px 13px;border:1px solid #34506b;text-align:left}th{background:#203c57;color:#8ce3f7}.table-scroll{overflow-x:auto} @media(min-width:700px){.wrap{padding:32px 24px 65px}section{padding:25px}pre{font-size:14px}}
+
+/* Practical navigation buttons */
+a.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    border: 1px solid #4aabc7;
+    border-radius: 10px;
+    background: #24405a;
+    color: #eafaff;
+    text-decoration: none;
+    font-weight: 650;
+    transition: background .2s, border-color .2s;
+}
+a.back:hover, a.back:focus-visible,
+.practical-nav a:hover, .practical-nav a:focus-visible {
+    background: #315875;
+    border-color: #64dcf2;
+    outline: none;
+}
+.practical-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+.practical-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #4aabc7;
+    border-radius: 10px;
+    background: #24405a;
+    color: #eafaff;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background .2s, border-color .2s;
+}
+
+/* Mobile readability adjustments only */
+@media (max-width: 699px) {
+    body { font-size: 14px; line-height: 1.65; }
+    h1 { font-size: 23px; }
+    h2 { font-size: 19px; }
+    section p, section li { font-size: 14px; line-height: 1.65; }
+    pre, pre code, .result { font-size: 12px; }
+    .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
+}
 </style>
 </head>
 <body><main class="wrap">
@@ -38,6 +89,10 @@ INSERT INTO student_details VALUES
 
 DESC student_details;</code></pre></section>
 <section><h2>Output</h2><div class="table-scroll"><table><thead><tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default</th><th>Extra</th></tr></thead><tbody><tr><td>ID</td><td>int</td><td>YES</td><td></td><td>NULL</td><td></td></tr><tr><td>Name</td><td>varchar(50)</td><td>YES</td><td></td><td>NULL</td><td></td></tr><tr><td>City</td><td>varchar(30)</td><td>YES</td><td></td><td>NULL</td><td></td></tr><tr><td>Mobile</td><td>varchar(15)</td><td>YES</td><td></td><td>NULL</td><td></td></tr></tbody></table></div></section>
+<nav class="practical-nav" aria-label="Practical navigation">
+    <span aria-hidden="true"></span>
+    <a href="p3.html">Practical 3 →</a>
+</nav>
 </main><script>
 const btn=document.getElementById('copyBtn');const sql=document.getElementById('sql');btn.addEventListener('click',async()=>{const content=sql.textContent;let copied=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(content);copied=true;}}catch(e){}if(!copied){const ta=document.createElement('textarea');ta.value=content;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();try{copied=document.execCommand('copy')}catch(e){}ta.remove()}if(!copied){const range=document.createRange();range.selectNodeContents(sql);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);alert('Copy was blocked. The SQL code is selected; use Copy from the selection menu.')}});
 </script></body></html>

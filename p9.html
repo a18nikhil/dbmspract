@@ -21,6 +21,57 @@ pre{background:#061322;border:1px solid #263e56;border-radius:14px;padding:14px;
 .result{background:#071524;border:1px solid #2a435e;border-radius:12px;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,Consolas,monospace;color:#9de8b4;white-space:pre;margin:0}
 .command-pair+.command-pair{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}.command-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}.command-row pre{flex:1;min-width:0}
 @media(min-width:700px){.wrap{padding:32px 25px 70px}section{padding:28px}pre{font-size:14px;padding:18px}}
+
+/* Practical navigation buttons */
+a.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    border: 1px solid #4aabc7;
+    border-radius: 10px;
+    background: #24405a;
+    color: #eafaff;
+    text-decoration: none;
+    font-weight: 650;
+    transition: background .2s, border-color .2s;
+}
+a.back:hover, a.back:focus-visible,
+.practical-nav a:hover, .practical-nav a:focus-visible {
+    background: #315875;
+    border-color: #64dcf2;
+    outline: none;
+}
+.practical-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+.practical-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #4aabc7;
+    border-radius: 10px;
+    background: #24405a;
+    color: #eafaff;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background .2s, border-color .2s;
+}
+
+/* Mobile readability adjustments only */
+@media (max-width: 699px) {
+    body { font-size: 14px; line-height: 1.65; }
+    h1 { font-size: 23px; }
+    h2 { font-size: 19px; }
+    section p, section li { font-size: 14px; line-height: 1.65; }
+    pre, pre code, .result { font-size: 12px; }
+    .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
+}
 </style>
 </head>
 <body>
@@ -127,6 +178,10 @@ INSERT INTO student VALUES
 Rows matched: 1  Changed: 1  Warnings: 0</pre>
 </div>
 </section>
+<nav class="practical-nav" aria-label="Practical navigation">
+    <a href="p8.html">← Practical 8</a>
+    <span aria-hidden="true"></span>
+</nav>
 </main>
 <script>
 async function copyCode(id) {
