@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Practical 2 | DBMS Practical Lab</title>
 <style>
-:root{color-scheme:dark;--bg:#0B1220;--card:#172338;--line:#2A3A52;--cyan:#38BDF8;--text:#E2E8F0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Arial,Helvetica,sans-serif}.wrap{max-width:850px;margin:auto;padding:24px 14px 50px}.back{color:var(--cyan);text-decoration:none;font-weight:700}h1{text-align:center;font-size:29px;margin:24px 0 30px}section{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:20px;margin:17px 0}h2{color:var(--cyan);font-size:21px;margin:0 0 14px}p{margin:0 0 14px}p:last-child{margin-bottom:0}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.head h2{margin:0}.copy{width:48px;height:48px;border:1px solid #38BDF8;border-radius:11px;background:#21374D;color:#F1F5F9;display:grid;place-items:center;cursor:pointer}.copy:focus-visible{outline:3px solid #fff;outline-offset:2px}pre{background:#0B1728;border:1px solid #2A3A52;border-radius:12px;padding:14px;overflow-x:auto;margin:0;color:#D5E9FA;font:13px/1.85 Consolas,'Courier New',monospace;tab-size:4}table{width:100%;border-collapse:collapse;min-width:610px;font-size:14px}th,td{padding:11px 13px;border:1px solid #344C67;text-align:left}th{background:#21374D;color:#7DD3FC}.table-scroll{overflow-x:auto} @media(min-width:700px){.wrap{padding:32px 24px 65px}section{padding:25px}pre{font-size:14px}}
+:root{color-scheme:dark;--bg:#0d1117;--card:#161b22;--line:#30363d;--cyan:#58a6ff;--text:#e6edf3}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Arial,Helvetica,sans-serif}.wrap{max-width:850px;margin:auto;padding:24px 14px 50px}.back{color:var(--cyan);text-decoration:none;font-weight:700}h1{text-align:center;font-size:29px;margin:24px 0 30px}section{background:var(--card);border:1px solid var(--line);border-radius: 10px;padding:20px;margin:17px 0}h2{color:var(--cyan);font-size:21px;margin:0 0 14px}p{margin:0 0 14px}p:last-child{margin-bottom:0}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.head h2{margin:0}.copy{width:48px;height:48px;border:1px solid #58a6ff;border-radius:11px;background:#212d3b;color:#e6edf3;display:grid;place-items:center;cursor:pointer}.copy:focus-visible{outline:3px solid #e6edf3;outline-offset:2px}pre{background:#0d1117;border:1px solid #30363d;border-radius: 10px;padding:14px;overflow-x:auto;margin:0;color:#c9d1d9;font:13px/1.85 Consolas,'Courier New',monospace;tab-size:4}table{width:100%;border-collapse:collapse;min-width:610px;font-size:14px}th,td{padding:11px 13px;border:1px solid #30363d;text-align:left}th{background:#212d3b;color:#79c0ff}.table-scroll{overflow-x:auto} @media(min-width:700px){.wrap{padding:32px 24px 65px}section{padding:25px}pre{font-size:14px}}
 
 /* Practical navigation buttons */
 a.back {
@@ -13,18 +13,18 @@ a.back {
     align-items: center;
     justify-content: center;
     padding: 9px 15px;
-    border: 1px solid #488CAC;
+    border: 1px solid #3b638b;
     border-radius: 10px;
-    background: #21374D;
-    color: #D5E9FA;
+    background: #212d3b;
+    color: #e6edf3;
     text-decoration: none;
     font-weight: 650;
-    
+    transition: background .2s, border-color .2s;
 }
 a.back:hover, a.back:focus-visible,
 .practical-nav a:hover, .practical-nav a:focus-visible {
-    background: #29465F;
-    border-color: #7DD3FC;
+    background: #2a3a4b;
+    border-color: #79c0ff;
     outline: none;
 }
 .practical-nav {
@@ -39,13 +39,13 @@ a.back:hover, a.back:focus-visible,
     align-items: center;
     justify-content: center;
     padding: 10px 15px;
-    border: 1px solid #488CAC;
+    border: 1px solid #3b638b;
     border-radius: 10px;
-    background: #21374D;
-    color: #D5E9FA;
+    background: #212d3b;
+    color: #e6edf3;
     font-weight: 650;
     text-decoration: none;
-    
+    transition: background .2s, border-color .2s;
 }
 
 /* Mobile readability adjustments only */
@@ -57,16 +57,6 @@ a.back:hover, a.back:focus-visible,
     pre, pre code, .result { font-size: 12px; }
     .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
 }
-
-
-/* Midnight Navy: calm, static study interface */
-:root { --bg:#0B1220; --panel:#172338; --card:#172338; --line:#2A3A52; --cyan:#38BDF8; --text:#E2E8F0; }
-.card:hover,.card:focus-visible { background:#1B2C44; border-color:#38BDF8; box-shadow:none; transform:none; }
-.card:active,.copy:active,.back:active,.practical-nav a:active { transform:none; }
-/* Brief neutral press feedback; the copy icon stays visible. */
-.copy.copied { animation:copyBlink 220ms ease-out; }
-@keyframes copyBlink { 0%,100% { opacity:1; } 50% { opacity:.48; } }
-@media (prefers-reduced-motion:reduce) { .copy.copied { animation:none; } }
 </style>
 </head>
 <body><main class="wrap">
@@ -74,7 +64,7 @@ a.back:hover, a.back:focus-visible,
 <h1>Practical 2</h1>
 <section><h2>Aim</h2><p>Create a Database "students" and a table "student_details" inside the database. Insert 10 entries with column names: ID, Name, City, Mobile. Show the complete table using DESC command.</p></section>
 <section><h2>Background Information</h2><p>In MySQL, the DESC (DESCRIBE) command displays the structure of a table. It shows each column's name, data type, whether NULL values are allowed, key information, default value, and extra properties.</p><p>This command helps us understand how a table is designed before working with its data. DESC shows the table structure, not the records stored in the table.</p></section>
-<section><div class="head"><h2>Source Code</h2><button class="copy" id="copyBtn" type="button" aria-label="Copy all SQL source code" title="Copy source code" data-copy-target="sql"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
+<section><div class="head"><h2>Source Code</h2><button class="copy" id="copyBtn" type="button" aria-label="Copy all SQL source code" title="Copy source code"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
 <pre><code id="sql">CREATE DATABASE students;
 USE students;
 
@@ -104,44 +94,5 @@ DESC student_details;</code></pre></section>
     <a href="p3.html">Practical 3 →</a>
 </nav>
 </main><script>
-// Copy feedback is the only animated interaction on this site.
-const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>';
-async function copyCode(id, button) {
-  const target = document.getElementById(id);
-  if (!target) return;
-  const value = target.textContent.trim();
-  let success = false;
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(value);
-      success = true;
-    }
-  } catch (_) {}
-  if (!success) {
-    const input = document.createElement('textarea');
-    input.value = value;
-    input.setAttribute('readonly', '');
-    input.style.cssText = 'position:fixed;left:-9999px;top:0';
-    document.body.appendChild(input);
-    input.select();
-    try { success = document.execCommand('copy'); } catch (_) {}
-    input.remove();
-  }
-  if (!success) { alert('Copy unavailable. Please select and copy the code manually.'); return; }
-  if (!button) return;
-  // Restart the subtle blink on each successful copy.
-  button.classList.remove('copied');
-  void button.offsetWidth;
-  button.classList.add('copied');
-  clearTimeout(button._copyTimer);
-  button._copyTimer = setTimeout(() => button.classList.remove('copied'), 240);
-}
-document.querySelectorAll('button.copy').forEach(button => {
-  button.removeAttribute('onclick');
-  button.addEventListener('click', () => {
-    const target = button.dataset.copyTarget;
-    if (target) copyCode(target, button);
-  });
-});
-</script>
-</body></html>
+const btn=document.getElementById('copyBtn');const sql=document.getElementById('sql');btn.addEventListener('click',async()=>{const content=sql.textContent;let copied=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(content);copied=true;}}catch(e){}if(!copied){const ta=document.createElement('textarea');ta.value=content;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();try{copied=document.execCommand('copy')}catch(e){}ta.remove()}if(!copied){const range=document.createRange();range.selectNodeContents(sql);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);alert('Copy was blocked. The SQL code is selected; use Copy from the selection menu.')}});
+</script></body></html>

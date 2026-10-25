@@ -9,11 +9,11 @@
 <style>
 :root {
     color-scheme: dark;
-    --bg: #0B1220;
-    --panel: #172338;
-    --line: #2A3A52;
-    --cyan: #38BDF8;
-    --text: #E2E8F0;
+    --bg: #0d1117;
+    --panel: #161b22;
+    --line: #30363d;
+    --cyan: #58a6ff;
+    --text: #e6edf3;
 }
 
 * {
@@ -51,7 +51,7 @@ h1 {
 section {
     background: var(--panel);
     border: 1px solid var(--line);
-    border-radius: 18px;
+    border-radius: 10px;
     padding: 20px;
     margin: 0 0 18px;
 }
@@ -90,10 +90,10 @@ ul {
 .copy {
     width: 44px;
     height: 44px;
-    border: 1px solid #488CAC;
+    border: 1px solid #3b638b;
     border-radius: 11px;
-    background: #21374D;
-    color: #D5E9FA;
+    background: #212d3b;
+    color: #e6edf3;
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -101,7 +101,7 @@ ul {
 }
 
 .copy:active {
-    
+    transform: scale(.96);
 }
 
 .copy svg {
@@ -112,9 +112,9 @@ ul {
 /* Same SQL font and styling as Practical 3 */
 
 pre {
-    background: #0B1728;
-    border: 1px solid #2A3A52;
-    border-radius: 14px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 10px;
     padding: 14px;
     overflow-x: auto;
     white-space: pre;
@@ -123,7 +123,7 @@ pre {
           Consolas,
           'Liberation Mono',
           monospace;
-    color: #D5E9FA;
+    color: #c9d1d9;
     margin: 0;
 }
 
@@ -132,15 +132,15 @@ code {
 }
 
 .result {
-    background: #0B1728;
-    border: 1px solid #2A3A52;
-    border-radius: 12px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 10px;
     padding: 14px;
     overflow-x: auto;
     font: 13px/1.6 ui-monospace,
           Consolas,
           monospace;
-    color: #9de8b4;
+    color: #3fb950;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     margin: 0;
@@ -189,18 +189,18 @@ a.back {
     align-items: center;
     justify-content: center;
     padding: 9px 15px;
-    border: 1px solid #488CAC;
+    border: 1px solid #3b638b;
     border-radius: 10px;
-    background: #21374D;
-    color: #D5E9FA;
+    background: #212d3b;
+    color: #e6edf3;
     text-decoration: none;
     font-weight: 650;
-    
+    transition: background .2s, border-color .2s;
 }
 a.back:hover, a.back:focus-visible,
 .practical-nav a:hover, .practical-nav a:focus-visible {
-    background: #29465F;
-    border-color: #7DD3FC;
+    background: #2a3a4b;
+    border-color: #79c0ff;
     outline: none;
 }
 .practical-nav {
@@ -215,13 +215,13 @@ a.back:hover, a.back:focus-visible,
     align-items: center;
     justify-content: center;
     padding: 10px 15px;
-    border: 1px solid #488CAC;
+    border: 1px solid #3b638b;
     border-radius: 10px;
-    background: #21374D;
-    color: #D5E9FA;
+    background: #212d3b;
+    color: #e6edf3;
     font-weight: 650;
     text-decoration: none;
-    
+    transition: background .2s, border-color .2s;
 }
 
 /* Mobile readability adjustments only */
@@ -233,16 +233,6 @@ a.back:hover, a.back:focus-visible,
     pre, pre code, .result { font-size: 12px; }
     .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
 }
-
-
-/* Midnight Navy: calm, static study interface */
-:root { --bg:#0B1220; --panel:#172338; --card:#172338; --line:#2A3A52; --cyan:#38BDF8; --text:#E2E8F0; }
-.card:hover,.card:focus-visible { background:#1B2C44; border-color:#38BDF8; box-shadow:none; transform:none; }
-.card:active,.copy:active,.back:active,.practical-nav a:active { transform:none; }
-/* Brief neutral press feedback; the copy icon stays visible. */
-.copy.copied { animation:copyBlink 220ms ease-out; }
-@keyframes copyBlink { 0%,100% { opacity:1; } 50% { opacity:.48; } }
-@media (prefers-reduced-motion:reduce) { .copy.copied { animation:none; } }
 </style>
 </head>
 
@@ -284,8 +274,24 @@ a.back:hover, a.back:focus-visible,
 
         <button class="copy"
                 type="button"
+                onclick="copyCode('sourceCode')"
                 aria-label="Copy source code"
-                title="Copy source code" data-copy-target="sourceCode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+                title="Copy source code">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <rect x="8" y="8"
+                      width="13" height="13" rx="2"/>
+
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+
+            </svg>
+        </button>
     </div>
 
 <pre><code id="sourceCode">CREATE DATABASE Employee;
@@ -325,8 +331,21 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
+                onclick="copyCode('cmd1')"
                 aria-label="Copy ADD command"
-                title="Copy command" data-copy-target="cmd1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+                title="Copy command">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+
+        </button>
 
     </div>
 
@@ -342,8 +361,21 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
+                onclick="copyCode('cmd2')"
                 aria-label="Copy DROP command"
-                title="Copy command" data-copy-target="cmd2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+                title="Copy command">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+
+        </button>
 
     </div>
 
@@ -359,8 +391,21 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
+                onclick="copyCode('cmd3')"
                 aria-label="Copy MODIFY command"
-                title="Copy command" data-copy-target="cmd3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+                title="Copy command">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+
+        </button>
 
     </div>
 
@@ -376,8 +421,21 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
+                onclick="copyCode('cmd4')"
                 aria-label="Copy RENAME command"
-                title="Copy command" data-copy-target="cmd4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+                title="Copy command">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0 2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+
+        </button>
 
     </div>
 
@@ -393,48 +451,50 @@ INSERT INTO Employee_details VALUES
 </nav>
 </main>
 
-
-
 <script>
-// Copy feedback is the only animated interaction on this site.
-const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>';
-async function copyCode(id, button) {
-  const target = document.getElementById(id);
-  if (!target) return;
-  const value = target.textContent.trim();
-  let success = false;
-  try {
+async function copyCode(id) {
+
+    const element = document.getElementById(id);
+    const text = element.textContent.trim();
+
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(value);
-      success = true;
+        try {
+            await navigator.clipboard.writeText(text);
+            return;
+        } catch (error) {
+            // Try fallback.
+        }
     }
-  } catch (_) {}
-  if (!success) {
-    const input = document.createElement('textarea');
-    input.value = value;
-    input.setAttribute('readonly', '');
-    input.style.cssText = 'position:fixed;left:-9999px;top:0';
-    document.body.appendChild(input);
-    input.select();
-    try { success = document.execCommand('copy'); } catch (_) {}
-    input.remove();
-  }
-  if (!success) { alert('Copy unavailable. Please select and copy the code manually.'); return; }
-  if (!button) return;
-  // Restart the subtle blink on each successful copy.
-  button.classList.remove('copied');
-  void button.offsetWidth;
-  button.classList.add('copied');
-  clearTimeout(button._copyTimer);
-  button._copyTimer = setTimeout(() => button.classList.remove('copied'), 240);
+
+    const textarea = document.createElement("textarea");
+
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+
+    document.body.appendChild(textarea);
+
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+
+    try {
+        copied = document.execCommand("copy");
+    } catch (error) {
+        copied = false;
+    }
+
+    textarea.remove();
+
+    if (!copied) {
+        alert("Copy unavailable. Please select and copy the code manually.");
+    }
 }
-document.querySelectorAll('button.copy').forEach(button => {
-  button.removeAttribute('onclick');
-  button.addEventListener('click', () => {
-    const target = button.dataset.copyTarget;
-    if (target) copyCode(target, button);
-  });
-});
 </script>
+
 </body>
 </html>

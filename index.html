@@ -10,11 +10,11 @@
 <style>
 :root {
     color-scheme: dark;
-    --bg: #0B1220;
-    --panel: #172338;
-    --line: #2A3A52;
-    --cyan: #38BDF8;
-    --text: #E2E8F0;
+    --bg: #0d1117;
+    --panel: #161b22;
+    --line: #30363d;
+    --cyan: #58a6ff;
+    --text: #e6edf3;
 }
 
 * {
@@ -32,7 +32,7 @@ body {
 /* Header */
 
 header {
-    background: #101B2C;
+    background: #0d1117;
     border-bottom: 1px solid var(--line);
 }
 
@@ -53,8 +53,8 @@ header {
     place-items: center;
     flex-shrink: 0;
     border-radius: 11px;
-    background: #203B52;
-    color: #7DD3FC;
+    background: #1c2b3e;
+    color: #79c0ff;
 }
 
 h1 {
@@ -86,14 +86,16 @@ h1 {
     color: inherit;
     background: var(--panel);
     border: 1px solid var(--line);
-    border-radius: 18px;
+    border-radius: 10px;
     padding: 24px;
-    
+    transition: background .2s,
+                border-color .2s,
+                transform .2s;
 }
 
 .card:hover,
 .card:focus-visible {
-    background: #1B2C44;
+    background: #1c2530;
     border-color: var(--cyan);
     
     outline: none;
@@ -149,7 +151,7 @@ h1 {
 
     .card {
         padding: 18px;
-        border-radius: 16px;
+        border-radius: 10px;
     }
 
     .num {
@@ -162,16 +164,6 @@ h1 {
         line-height: 1.65;
     }
 }
-
-
-/* Midnight Navy: calm, static study interface */
-:root { --bg:#0B1220; --panel:#172338; --card:#172338; --line:#2A3A52; --cyan:#38BDF8; --text:#E2E8F0; }
-.card:hover,.card:focus-visible { background:#1B2C44; border-color:#38BDF8; box-shadow:none; transform:none; }
-.card:active,.copy:active,.back:active,.practical-nav a:active { transform:none; }
-.copy { transition:background-color 160ms ease,border-color 160ms ease,color 160ms ease; }
-.copy.copied { background:#174735; border-color:#4ADE80; color:#BBF7D0; }
-.copy.copied svg { width:21px; height:21px; }
-@media (prefers-reduced-motion:reduce) { .copy { transition:none; } }
 </style>
 </head>
 
