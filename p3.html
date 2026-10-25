@@ -64,41 +64,10 @@ a.back:hover, a.back:focus-visible,
 :root { --bg:#0B1220; --panel:#172338; --card:#172338; --line:#2A3A52; --cyan:#38BDF8; --text:#E2E8F0; }
 .card:hover,.card:focus-visible { background:#1B2C44; border-color:#38BDF8; box-shadow:none; transform:none; }
 .card:active,.copy:active,.back:active,.practical-nav a:active { transform:none; }
-.copy { transition:background-color 160ms ease,border-color 160ms ease,color 160ms ease; }
-.copy.copied { background:#174735; border-color:#4ADE80; color:#BBF7D0; }
-.copy.copied svg { width:21px; height:21px; }
-@media (prefers-reduced-motion:reduce) { .copy { transition:none; } }
-
-/* Follow the operating system's light/dark appearance; dark colors above remain unchanged. */
-@media (prefers-color-scheme: light) {
- :root { color-scheme: light; --bg:#F8FAFC; --panel:#FFFFFF; --card:#FFFFFF; --line:#DCE3EC; --cyan:#1D4ED8; --text:#0F172A; --muted:#475569; }
- body { background:var(--bg); color:var(--text); }
- header { background:#FFFFFF; border-color:#DCE3EC; }
- section, .card { background:#FFFFFF; border-color:#DCE3EC; color:#0F172A; }
- .card:hover,.card:focus-visible { background:#F1F5F9; border-color:#93B4E9; }
- .logo { background:#E8F0FE; color:#1D4ED8; }
- h1, .question, p, li { color:inherit; }
- h2, .num, .back { color:#1D4ED8; }
- pre, pre code, .command-row pre, .command-pair pre { background:#F1F5F9; color:#1E3A5F; border-color:#DCE3EC; }
- .result, .output, .result pre, .output pre { background:#EFF6F1; color:#166534; border-color:#CFE7D7; }
- table { color:#0F172A; }
- th, td { border-color:#CBD5E1; }
- th { background:#E8F0FE; color:#1D4ED8; }
- .copy, button.copy, a.back, .practical-nav a { background:#EFF6FF; color:#1D4ED8; border-color:#B7CFF5; }
- a.back:hover, a.back:focus-visible, .practical-nav a:hover, .practical-nav a:focus-visible { background:#E1EEFF; border-color:#729FE6; }
- .copy svg { stroke:currentColor; }
-}
-/* Brief, restrained visual acknowledgement after a successful copy. */
-.copy.copied { animation:copy-press-flash .28s ease-out; }
-@keyframes copy-press-flash { 0% { opacity:1; } 45% { opacity:.48; } 100% { opacity:1; } }
-@media (prefers-reduced-motion: reduce) { .copy.copied { animation:none; } }
-/* Do not turn copy buttons green or replace their icons. */
-.copy.copied { color:inherit; }
-
-:root { color-scheme:dark light; }
-.copy.copied, button.copy.copied { background:#21374D !important; border-color:#38BDF8 !important; color:#F1F5F9 !important; }
-@media(prefers-color-scheme:light) { .copy.copied, button.copy.copied { background:#EFF6FF !important; border-color:#B7CFF5 !important; color:#1D4ED8 !important; } }
-
+/* Brief neutral press feedback; the copy icon stays visible. */
+.copy.copied { animation:copyBlink 220ms ease-out; }
+@keyframes copyBlink { 0%,100% { opacity:1; } 50% { opacity:.48; } }
+@media (prefers-reduced-motion:reduce) { .copy.copied { animation:none; } }
 </style>
 </head>
 <body>
@@ -143,7 +112,6 @@ INSERT INTO student_details VALUES
 <script>
 // Copy feedback is the only animated interaction on this site.
 const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>';
-const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 async function copyCode(id, button) {
   const target = document.getElementById(id);
   if (!target) return;
@@ -167,19 +135,12 @@ async function copyCode(id, button) {
   }
   if (!success) { alert('Copy unavailable. Please select and copy the code manually.'); return; }
   if (!button) return;
-  clearTimeout(button._copyTimer);
-  const originalLabel = button.dataset.originalLabel || button.getAttribute('aria-label') || 'Copy SQL';
-  button.dataset.originalLabel = originalLabel;
+  // Restart the subtle blink on each successful copy.
+  button.classList.remove('copied');
+  void button.offsetWidth;
   button.classList.add('copied');
-  button.setAttribute('aria-label', 'Copied');
-  button.setAttribute('title', 'Copied');
-  
-  button._copyTimer = setTimeout(() => {
-    button.classList.remove('copied');
-    button.setAttribute('aria-label', originalLabel);
-    button.setAttribute('title', originalLabel);
-    
-  }, 300);
+  clearTimeout(button._copyTimer);
+  button._copyTimer = setTimeout(() => button.classList.remove('copied'), 240);
 }
 document.querySelectorAll('button.copy').forEach(button => {
   button.removeAttribute('onclick');
