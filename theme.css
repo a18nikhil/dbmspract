@@ -67,3 +67,42 @@ a.back:hover,.practical-nav a:hover{background:var(--button-hover);border-color:
 .theme-toggle svg{width:18px;height:18px;flex-shrink:0}
 @media(max-width:650px){.theme-toggle{right:12px;min-height:38px;padding:8px}.theme-toggle .theme-label{display:none}.header-inner{padding-right:54px;padding-left:54px}}
 @media(max-width:699px){.copy{width:42px;height:42px;min-width:42px;min-height:42px}.command-row{gap:10px}table{font-size:13px}table th,table td{padding:10px 12px}}
+
+/* Readability pass: stronger text contrast in both themes, without layout changes. */
+:root, :root[data-theme=dark]{
+ --body-text:#f3f6fb;
+ --muted-text:#d5deea;
+ --code-text:#f0f5ff;
+ --output-text:#a5f2bf;
+ --accent:#8bc5ff;
+ --table-head-text:#f3f8ff;
+ --button-text:#f3f6fb;
+}
+@media(prefers-color-scheme:light){
+ :root:not([data-theme]){
+  --body-text:#151c27;
+  --muted-text:#354253;
+  --code-text:#182332;
+  --output-text:#145b2c;
+  --accent:#0755b8;
+  --table-head-text:#123b70;
+  --button-text:#192333;
+ }
+}
+:root[data-theme=light]{
+ --body-text:#151c27;
+ --muted-text:#354253;
+ --code-text:#182332;
+ --output-text:#145b2c;
+ --accent:#0755b8;
+ --table-head-text:#123b70;
+ --button-text:#192333;
+}
+/* Inherit the improved text colors across all content types. */
+body, section, section p, section li, .question, .card, td {color:var(--body-text)}
+pre, pre code, .command-row pre, #sql {color:var(--code-text)}
+.result, pre.result, .result code {color:var(--output-text)}
+h1{color:var(--body-text)}
+h2,.num{color:var(--accent)}
+th{color:var(--table-head-text)}
+.copy,.back,.practical-nav a,.theme-toggle{color:var(--button-text)}
