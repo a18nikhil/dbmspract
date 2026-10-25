@@ -1,0 +1,26 @@
+/* Shared theme: system preference by default; manual choice persists. */
+:root { --page-bg:#0d1117; --surface:#161b22; --border:#30363d; --accent:#58a6ff; --body-text:#e6edf3; --code-bg:#0d1117; --code-text:#c9d1d9; --output-text:#3fb950; --button-bg:#212d3b; --button-border:#3b638b; --button-text:#e6edf3; --button-hover:#2a3a4b; --card-hover:#1c2530; --logo-bg:#1c2b3e; --logo-text:#79c0ff; }
+@media (prefers-color-scheme: light) {
+ :root:not([data-theme]) { --page-bg:#f6f8fa; --surface:#ffffff; --border:#d0d7de; --accent:#0969da; --body-text:#24292f; --code-bg:#f6f8fa; --code-text:#24292f; --output-text:#116329; --button-bg:#f6f8fa; --button-border:#afb8c1; --button-text:#24292f; --button-hover:#eaeef2; --card-hover:#f3f6fa; --logo-bg:#ddf4ff; --logo-text:#0969da; }
+}
+:root[data-theme="light"] { --page-bg:#f6f8fa; --surface:#ffffff; --border:#d0d7de; --accent:#0969da; --body-text:#24292f; --code-bg:#f6f8fa; --code-text:#24292f; --output-text:#116329; --button-bg:#f6f8fa; --button-border:#afb8c1; --button-text:#24292f; --button-hover:#eaeef2; --card-hover:#f3f6fa; --logo-bg:#ddf4ff; --logo-text:#0969da; }
+:root[data-theme="dark"] { --page-bg:#0d1117; --surface:#161b22; --border:#30363d; --accent:#58a6ff; --body-text:#e6edf3; --code-bg:#0d1117; --code-text:#c9d1d9; --output-text:#3fb950; --button-bg:#212d3b; --button-border:#3b638b; --button-text:#e6edf3; --button-hover:#2a3a4b; --card-hover:#1c2530; --logo-bg:#1c2b3e; --logo-text:#79c0ff; }
+:root { color-scheme:dark; --bg:var(--page-bg); --panel:var(--surface); --line:var(--border); --cyan:var(--accent); --text:var(--body-text); }
+:root[data-theme="light"] {color-scheme:light}
+@media (prefers-color-scheme: light) { :root:not([data-theme]) {color-scheme:light} }
+body { background:var(--page-bg); color:var(--body-text); }
+header { background:var(--page-bg); border-color:var(--border); }
+.logo {background:var(--logo-bg);color:var(--logo-text)}
+.card {background:var(--surface);border-color:var(--border);color:var(--body-text)}
+.card:hover,.card:focus-visible {background:var(--card-hover);border-color:var(--accent)}
+section {background:var(--surface);border-color:var(--border)}
+pre {background:var(--code-bg);border-color:var(--border);color:var(--code-text)}
+.result {background:var(--code-bg);border-color:var(--border);color:var(--output-text)}
+.copy, a.back, .practical-nav a {background:var(--button-bg);border-color:var(--button-border);color:var(--button-text)}
+a.back:hover,a.back:focus-visible,.practical-nav a:hover,.practical-nav a:focus-visible {background:var(--button-hover);border-color:var(--accent)}
+/* Homepage-only theme control */
+.header-inner {position:relative}
+.theme-toggle {position:absolute;right:25px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:8px 11px;border:1px solid var(--button-border);border-radius:9px;background:var(--button-bg);color:var(--button-text);font:600 13px/1.3 Inter,system-ui,sans-serif;cursor:pointer}
+.theme-toggle:hover,.theme-toggle:focus-visible {background:var(--button-hover);border-color:var(--accent)}
+.theme-toggle svg {width:17px;height:17px;flex-shrink:0}
+@media(max-width:650px){.theme-toggle{right:12px;padding:8px}.theme-toggle .theme-label{display:none}.header-inner{padding-right:54px;padding-left:54px}}

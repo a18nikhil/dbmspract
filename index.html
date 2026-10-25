@@ -7,6 +7,7 @@
 
 <title>DBMS Practical Lab</title>
 
+<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
 <style>
 :root {
     color-scheme: dark;
@@ -165,6 +166,7 @@ h1 {
     }
 }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 
 <body>
@@ -191,6 +193,7 @@ h1 {
         </span>
 
         <h1>DBMS Practical Lab</h1>
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg><span class="theme-label">Theme</span></button>
 
     </div>
 </header>
@@ -336,5 +339,6 @@ h1 {
 
 </main>
 
+<script src="theme.js"></script>
 </body>
 </html>
