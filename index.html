@@ -29,7 +29,7 @@ header {
 }
 
 .wrap {
-    width: min(1040px, calc(100% - 28px));
+    width: min(1000px, calc(100% - 40px));
     margin: auto;
 }
 
@@ -45,6 +45,7 @@ header .wrap {
     height: 40px;
     display: grid;
     place-items: center;
+    flex-shrink: 0;
     border-radius: 11px;
     background: #143a50;
     color: #64dcf2;
@@ -60,7 +61,8 @@ main {
     padding: 26px 0 60px;
 }
 
-/* One vertical column on all devices */
+/* Vertical layout on desktop and mobile */
+
 .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -105,11 +107,16 @@ main {
 }
 
 /* Mobile adjustments */
+
 @media (max-width: 650px) {
+
+    .wrap {
+        width: calc(100% - 40px);
+    }
 
     .grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 14px;
     }
 
     header .wrap {
@@ -138,6 +145,7 @@ main {
     <div class="wrap">
 
         <span class="logo" aria-hidden="true">
+
             <svg width="25" height="25"
                  viewBox="0 0 24 24"
                  fill="none"
@@ -151,6 +159,7 @@ main {
                 <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
 
             </svg>
+
         </span>
 
         <h1>DBMS Practical Lab</h1>
@@ -164,6 +173,7 @@ main {
 
 <a class="card" href="p2.html">
     <span class="num">PRACTICAL 2</span>
+
     <p class="question">
         Create a Database "students" and a table
         "student_details" inside the database.
@@ -175,6 +185,7 @@ main {
 
 <a class="card" href="p3.html">
     <span class="num">PRACTICAL 3</span>
+
     <p class="question">
         Create a Database "students" and a table
         "student_details" inside the database.
@@ -186,6 +197,7 @@ main {
 
 <a class="card" href="p4.html">
     <span class="num">PRACTICAL 4</span>
+
     <p class="question">
         Create a Database "Employee" and a table
         "Employee_details" inside the database.
@@ -199,6 +211,7 @@ main {
 
 <a class="card" href="p5.html">
     <span class="num">PRACTICAL 5</span>
+
     <p class="question">
         Create a Database "Employee" and a table
         "Employee_details" inside the database.
@@ -210,6 +223,7 @@ main {
 
 <a class="card" href="p6.html">
     <span class="num">PRACTICAL 6</span>
+
     <p class="question">
         Create a Database and use SELECT commands:
         Select (all columns),
@@ -224,6 +238,7 @@ main {
 
 <a class="card" href="p7.html">
     <span class="num">PRACTICAL 7</span>
+
     <p class="question">
         Create a Database and use SELECT with WHERE clause:
         WHERE with logical operators,
@@ -236,6 +251,7 @@ main {
 
 <a class="card" href="p8.html">
     <span class="num">PRACTICAL 8</span>
+
     <p class="question">
         Create a Database and use GROUP BY clause:
         Group By single column,
@@ -246,6 +262,7 @@ main {
 
 <a class="card" href="p9.html">
     <span class="num">PRACTICAL 9</span>
+
     <p class="question">
         Create a Database and use ORDER BY clause:
         Order By single column,
