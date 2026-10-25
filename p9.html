@@ -1,199 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practical 9 | DBMS Practical Lab</title>
-
-<script>
-(function () {
-    try {
-        const theme = localStorage.getItem('dbmspract-theme');
-        if (theme === 'light' || theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
-    } catch (e) {}
-})();
-</script>
-
+<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
 <style>
-:root {
-    color-scheme: dark;
-    --bg: #0d1117;
-    --panel: #161b22;
-    --line: #30363d;
-    --cyan: #58a6ff;
-    --text: #e6edf3;
-}
+:root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--line:#30363d;--cyan:#58a6ff;--text:#e6edf3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+.wrap{max-width:850px;margin:auto;padding:24px 14px 55px}
+.back{color:var(--cyan);text-decoration:none;font-weight:650;display:inline-block;margin:0 0 23px}
+h1{text-align:center;font-size:27px;margin:0 0 30px}
+section{background:var(--panel);border:1px solid var(--line);border-radius: 10px;padding:20px;margin:0 0 18px}
+h2{color:var(--cyan);font-size:21px;margin:0 0 16px}
+p{margin:0 0 12px}p:last-child{margin-bottom:0}
+ul{padding-left:22px;margin:8px 0}li{margin-bottom:5px}
+.codehead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.codehead h2{margin:0}
+.copy{width:44px;height:44px;border:1px solid #3b638b;border-radius:11px;background:#212d3b;color:#e6edf3;cursor:pointer;display:grid;place-items:center;flex-shrink:0}.copy:active{transform:scale(.96)}.copy svg{width:21px;height:21px}
+pre{background:#0d1117;border:1px solid #30363d;border-radius: 10px;padding:14px;overflow-x:auto;white-space:pre;font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;color:#c9d1d9;margin:0}code{font-family:inherit}
+.result{background:#0d1117;border:1px solid #30363d;border-radius: 10px;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,Consolas,monospace;color:#3fb950;white-space:pre;margin:0}
+.command-pair+.command-pair{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}.command-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}.command-row pre{flex:1;min-width:0}
+@media(min-width:700px){.wrap{padding:32px 25px 70px}section{padding:28px}pre{font-size:14px;padding:18px}}
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.7 Inter, system-ui, -apple-system,
-          'Segoe UI', sans-serif;
-}
-
-.wrap {
-    max-width: 850px;
-    margin: auto;
-    padding: 24px 14px 55px;
-}
-
-h1 {
-    text-align: center;
-    font-size: 27px;
-    margin: 0 0 30px;
-}
-
-section {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 18px;
-}
-
-h2 {
-    color: var(--cyan);
-    font-size: 21px;
-    margin: 0 0 16px;
-}
-
-p {
-    margin: 0 0 12px;
-}
-
-p:last-child {
-    margin-bottom: 0;
-}
-
-ul {
-    padding-left: 22px;
-    margin: 8px 0;
-}
-
-li {
-    margin-bottom: 5px;
-}
-
-.codehead {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.codehead h2 {
-    margin: 0;
-}
-
-/* Consistent copy buttons */
-
-.copy {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0;
-    border: 1px solid #3b638b;
-    border-radius: 11px;
-    background: #212d3b;
-    color: #e6edf3;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 44px;
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-.copy svg {
-    display: block;
-    width: 21px;
-    height: 21px;
-    flex: 0 0 auto;
-}
-
-.copy:active {
-    transform: scale(.96);
-}
-
-.copy:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
-}
-
-pre {
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 14px;
-    overflow-x: auto;
-    white-space: pre;
-    font: 13px/1.75 ui-monospace,
-          SFMono-Regular, Consolas,
-          'Liberation Mono', monospace;
-    color: #c9d1d9;
-    margin: 0;
-}
-
-code {
-    font-family: inherit;
-}
-
-.result {
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 14px;
-    overflow-x: auto;
-    white-space: pre;
-    font: 13px/1.6 ui-monospace,
-          Consolas, monospace;
-    color: #3fb950;
-    margin: 0;
-}
-
-.command-pair + .command-pair {
-    border-top: 1px solid var(--line);
-    padding-top: 20px;
-    margin-top: 20px;
-}
-
-.command-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.command-row pre {
-    flex: 1 1 auto;
-    min-width: 0;
-}
-
+/* Practical navigation buttons */
 a.back {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 9px 15px;
-    margin-bottom: 23px;
     border: 1px solid #3b638b;
     border-radius: 10px;
     background: #212d3b;
     color: #e6edf3;
     text-decoration: none;
     font-weight: 650;
+    transition: background .2s, border-color .2s;
 }
-
+a.back:hover, a.back:focus-visible,
+.practical-nav a:hover, .practical-nav a:focus-visible {
+    background: #2a3a4b;
+    border-color: #79c0ff;
+    outline: none;
+}
 .practical-nav {
     display: flex;
     justify-content: space-between;
@@ -201,7 +50,6 @@ a.back {
     gap: 12px;
     margin-top: 26px;
 }
-
 .practical-nav a {
     display: inline-flex;
     align-items: center;
@@ -213,148 +61,41 @@ a.back {
     color: #e6edf3;
     font-weight: 650;
     text-decoration: none;
+    transition: background .2s, border-color .2s;
 }
 
-@media (min-width: 700px) {
-    .wrap {
-        padding: 32px 25px 70px;
-    }
-
-    section {
-        padding: 28px;
-    }
-
-    pre {
-        font-size: 14px;
-        padding: 18px;
-    }
-}
-
+/* Mobile readability adjustments only */
 @media (max-width: 699px) {
-    body {
-        font-size: 14px;
-        line-height: 1.65;
-    }
-
-    h1 {
-        font-size: 23px;
-    }
-
-    h2 {
-        font-size: 19px;
-    }
-
-    section p,
-    section li {
-        font-size: 14px;
-        line-height: 1.65;
-    }
-
-    pre,
-    pre code,
-    .result {
-        font-size: 12px;
-    }
-
-    .back,
-    .practical-nav a {
-        font-size: 13px;
-    }
+    body { font-size: 14px; line-height: 1.65; }
+    h1 { font-size: 23px; }
+    h2 { font-size: 19px; }
+    section p, section li { font-size: 14px; line-height: 1.65; }
+    pre, pre code, .result { font-size: 12px; }
+    .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
 }
 </style>
-
 <link rel="stylesheet" href="theme.css">
-
-<style>
-/* Keep copy buttons identical in both themes */
-.copy {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
-    flex: 0 0 44px !important;
-    padding: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.copy svg {
-    display: block !important;
-    width: 21px !important;
-    height: 21px !important;
-}
-</style>
-
 </head>
-
 <body>
-
 <main class="wrap">
-
-<a class="back" href="index.html">
-    ← All Practicals
-</a>
-
+<a class="back" href="index.html">← All Practicals</a>
 <h1>Practical 9</h1>
-
 <section>
-    <h2>Aim</h2>
-
-    <p>
-        Create a Database and use ORDER BY clause:
-        Order By single column,
-        Order By multiple columns,
-        Order By column number.
-        Use UPDATE command.
-    </p>
+<h2>Aim</h2>
+<p>Create a Database and use ORDER BY clause: Order By single column, Order By multiple columns, Order By column number. Use UPDATE command.</p>
 </section>
-
 <section>
-    <h2>Background Information</h2>
-
-    <p>
-        In MySQL, the ORDER BY clause is used to sort records
-        in ascending or descending order.
-        ASC means ascending order and DESC means descending order.
-    </p>
-
-    <ul>
-        <li>
-            <strong>ORDER BY single column:</strong>
-            Sorts records using one column.
-        </li>
-        <li>
-            <strong>ORDER BY multiple columns:</strong>
-            Sorts records using two or more columns in sequence.
-        </li>
-        <li>
-            <strong>ORDER BY column number:</strong>
-            Sorts records using the position of a column
-            in the SELECT list.
-        </li>
-        <li>
-            <strong>UPDATE:</strong>
-            Changes existing values in a table.
-            The WHERE clause specifies which records
-            should be changed.
-        </li>
-    </ul>
+<h2>Background Information</h2>
+<p>In MySQL, the ORDER BY clause is used to sort records in ascending or descending order. ASC means ascending order and DESC means descending order.</p>
+<ul>
+<li><strong>ORDER BY single column:</strong> Sorts records using one column.</li>
+<li><strong>ORDER BY multiple columns:</strong> Sorts records using two or more columns in sequence.</li>
+<li><strong>ORDER BY column number:</strong> Sorts records using the position of a column in the SELECT list.</li>
+<li><strong>UPDATE:</strong> Changes existing values in a table. The WHERE clause specifies which records should be changed.</li>
+</ul>
 </section>
-
 <section>
-
-    <div class="codehead">
-        <h2>Source Code</h2>
-
-        <button class="copy"
-                type="button"
-                data-copy="sourceCode"
-                aria-label="Copy source code"
-                title="Copy source code">
-        </button>
-    </div>
-
+<div class="codehead"><h2>Source Code</h2><button class="copy" type="button" onclick="copyCode('sourceCode')" aria-label="Copy source code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
 <pre><code id="sourceCode">CREATE DATABASE college;
 USE college;
 
@@ -376,30 +117,11 @@ INSERT INTO student VALUES
 (8, 'Anjali', 'Pune', 82),
 (9, 'Karan', 'Surat', 76),
 (10, 'Pooja', 'Nagpur', 84);</code></pre>
-
 </section>
-
 <section>
-
 <h2>Commands and Outputs</h2>
-
-<!-- ORDER BY Single Column -->
-
 <div class="command-pair">
-
-    <div class="command-row">
-
-        <pre><code id="cmd1">SELECT * FROM student ORDER BY Marks;</code></pre>
-
-        <button class="copy"
-                type="button"
-                data-copy="cmd1"
-                aria-label="Copy ORDER BY single column command"
-                title="Copy command">
-        </button>
-
-    </div>
-
+<div class="command-row"><pre><code id="cmd1">SELECT * FROM student ORDER BY Marks;</code></pre><button class="copy" type="button" onclick="copyCode('cmd1')" aria-label="Copy first query"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -415,26 +137,9 @@ INSERT INTO student VALUES
 |  3 | Aman   | Mumbai |    90 |
 +----+--------+--------+-------+
 10 rows in set (0.00 sec)</pre>
-
 </div>
-
-<!-- ORDER BY Multiple Columns -->
-
 <div class="command-pair">
-
-    <div class="command-row">
-
-        <pre><code id="cmd2">SELECT * FROM student ORDER BY City, Marks;</code></pre>
-
-        <button class="copy"
-                type="button"
-                data-copy="cmd2"
-                aria-label="Copy ORDER BY multiple columns command"
-                title="Copy command">
-        </button>
-
-    </div>
-
+<div class="command-row"><pre><code id="cmd2">SELECT * FROM student ORDER BY City, Marks;</code></pre><button class="copy" type="button" onclick="copyCode('cmd2')" aria-label="Copy second query"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -450,26 +155,9 @@ INSERT INTO student VALUES
 |  9 | Karan  | Surat  |    76 |
 +----+--------+--------+-------+
 10 rows in set (0.00 sec)</pre>
-
 </div>
-
-<!-- ORDER BY Column Number -->
-
 <div class="command-pair">
-
-    <div class="command-row">
-
-        <pre><code id="cmd3">SELECT ID, Name, City, Marks FROM student ORDER BY 4 DESC;</code></pre>
-
-        <button class="copy"
-                type="button"
-                data-copy="cmd3"
-                aria-label="Copy ORDER BY column number command"
-                title="Copy command">
-        </button>
-
-    </div>
-
+<div class="command-row"><pre><code id="cmd3">SELECT ID, Name, City, Marks FROM student ORDER BY 4 DESC;</code></pre><button class="copy" type="button" onclick="copyCode('cmd3')" aria-label="Copy third query"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0 2 2h3"/></svg></button></div>
 <pre class="result">+----+--------+--------+-------+
 | ID | Name   | City   | Marks |
 +----+--------+--------+-------+
@@ -485,128 +173,41 @@ INSERT INTO student VALUES
 |  5 | Rohit  | Nagpur |    70 |
 +----+--------+--------+-------+
 10 rows in set (0.00 sec)</pre>
-
 </div>
-
-<!-- UPDATE Command -->
-
 <div class="command-pair">
-
-    <div class="command-row">
-
-        <pre><code id="cmd4">UPDATE student SET Marks = 95 WHERE Name = 'Rahul';</code></pre>
-
-        <button class="copy"
-                type="button"
-                data-copy="cmd4"
-                aria-label="Copy UPDATE command"
-                title="Copy command">
-        </button>
-
-    </div>
-
+<div class="command-row"><pre><code id="cmd4">UPDATE student SET Marks = 95 WHERE Name = 'Rahul';</code></pre><button class="copy" type="button" onclick="copyCode('cmd4')" aria-label="Copy UPDATE query"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
 <pre class="result">Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0</pre>
-
 </div>
-
 </section>
-
-<nav class="practical-nav"
-     aria-label="Practical navigation">
-
+<nav class="practical-nav" aria-label="Practical navigation">
     <a href="p8.html">← Practical 8</a>
-
+    <span aria-hidden="true"></span>
 </nav>
-
 </main>
-
 <script>
-const COPY_ICON = `
-<svg viewBox="0 0 24 24"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="2"
-     stroke-linecap="round"
-     stroke-linejoin="round"
-     aria-hidden="true">
-    <rect x="8" y="8" width="13" height="13" rx="2"/>
-    <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-</svg>`;
-
-const CHECK_ICON = `
-<svg viewBox="0 0 24 24"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="2"
-     stroke-linecap="round"
-     stroke-linejoin="round"
-     aria-hidden="true">
-    <path d="M20 6 9 17l-5-5"/>
-</svg>`;
-
-document.querySelectorAll("button.copy").forEach(button => {
-    button.innerHTML = COPY_ICON;
-
-    button.addEventListener("click", () => {
-        copyCode(button.dataset.copy, button);
-    });
-});
-
-async function copyCode(id, button) {
+async function copyCode(id) {
     const element = document.getElementById(id);
-
-    if (!element) return;
-
     const text = element.textContent.trim();
-    let copied = false;
-
     if (navigator.clipboard && window.isSecureContext) {
-        try {
-            await navigator.clipboard.writeText(text);
-            copied = true;
-        } catch (error) {}
+        try { await navigator.clipboard.writeText(text); return; }
+        catch (error) { /* Try fallback. */ }
     }
-
-    if (!copied) {
-        const textarea = document.createElement("textarea");
-
-        textarea.value = text;
-        textarea.setAttribute("readonly", "");
-        textarea.style.position = "fixed";
-        textarea.style.left = "-9999px";
-
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-        textarea.setSelectionRange(0, textarea.value.length);
-
-        try {
-            copied = document.execCommand("copy");
-        } catch (error) {
-            copied = false;
-        }
-
-        textarea.remove();
-    }
-
-    if (copied) {
-        clearTimeout(button.copyTimer);
-
-        button.innerHTML = CHECK_ICON;
-        button.setAttribute("aria-label", "Copied");
-        button.title = "Copied";
-
-        button.copyTimer = setTimeout(() => {
-            button.innerHTML = COPY_ICON;
-            button.setAttribute("aria-label", "Copy command");
-            button.title = "Copy command";
-        }, 1200);
-    } else {
-        alert("Copy unavailable. Please select and copy the code manually.");
-    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+    let copied = false;
+    try { copied = document.execCommand('copy'); }
+    catch (error) { copied = false; }
+    textarea.remove();
+    if (!copied) alert('Copy unavailable. Please select and copy the code manually.');
 }
 </script>
-
 </body>
 </html>
