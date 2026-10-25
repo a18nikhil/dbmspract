@@ -95,3 +95,6 @@ th{color:var(--table-head-text)}
 .practical-topbar .back{margin:0}
 .practical-topbar .theme-toggle{position:static;transform:none;flex-shrink:0}
 @media(max-width:650px){.practical-topbar .theme-toggle{right:auto;top:auto}.practical-topbar .theme-label{display:none}}
+
+/* Practical-page toggle must stay within the top navigation row. */
+body .practical-topbar > .theme-toggle{position:static!important;inset:auto!important;transform:none!important;margin-left:auto!important}

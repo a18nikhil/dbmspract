@@ -246,7 +246,32 @@ a.back {
 }
 </style>
 
-<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="theme.css?v=2">
+<style>
+/* Keep the theme control in the top-right corner of the practical header. */
+.practical-topbar {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-bottom: 23px !important;
+}
+.practical-topbar > .back { margin: 0 !important; }
+.practical-topbar > .theme-toggle {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 0 0 auto !important;
+    flex: 0 0 auto !important;
+}
+</style>
 </head>
 
 <body>
