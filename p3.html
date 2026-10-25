@@ -58,6 +58,20 @@ a.back:hover, a.back:focus-visible,
     pre, pre code, .result { font-size: 12px; }
     .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
 }
+
+/* Subtle, accessible interaction enhancements */
+@media (prefers-reduced-motion: no-preference) {
+  .card { transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+  .card:active { transform: scale(.992); }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+  .back, .copy, .nav-btn, .nav-button, .navigation a, .bottom-nav a, .practical-nav a { transition: background-color 170ms ease, border-color 170ms ease, color 170ms ease, transform 170ms ease; }
+  .copy:active, .back:active, .nav-btn:active, .nav-button:active, .navigation a:active, .bottom-nav a:active, .practical-nav a:active { transform: scale(.97); }
+  @keyframes gentleAppear { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  main > section, main > .grid, main > h1, main > .card, main.wrap > section { animation: gentleAppear 340ms ease-out both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
 </style>
 </head>
 <body>
