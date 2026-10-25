@@ -10,11 +10,11 @@
 <style>
 :root {
     color-scheme: dark;
-    --bg: #080f20;
-    --panel: #132138;
-    --line: #263c57;
-    --cyan: #4bcbe7;
-    --text: #e2eaf5;
+    --bg: #0B1220;
+    --panel: #172338;
+    --line: #2A3A52;
+    --cyan: #38BDF8;
+    --text: #E2E8F0;
 }
 
 * {
@@ -32,7 +32,7 @@ body {
 /* Header */
 
 header {
-    background: #101d32;
+    background: #101B2C;
     border-bottom: 1px solid var(--line);
 }
 
@@ -53,8 +53,8 @@ header {
     place-items: center;
     flex-shrink: 0;
     border-radius: 11px;
-    background: #143a50;
-    color: #64dcf2;
+    background: #203B52;
+    color: #7DD3FC;
 }
 
 h1 {
@@ -88,16 +88,14 @@ h1 {
     border: 1px solid var(--line);
     border-radius: 18px;
     padding: 24px;
-    transition: background .2s,
-                border-color .2s,
-                transform .2s;
+    
 }
 
 .card:hover,
 .card:focus-visible {
-    background: #192b45;
+    background: #1B2C44;
     border-color: var(--cyan);
-    transform: translateY(-2px);
+    
     outline: none;
 }
 
@@ -165,19 +163,15 @@ h1 {
     }
 }
 
-/* Subtle, accessible interaction enhancements */
-@media (prefers-reduced-motion: no-preference) {
-  .card { transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
-  .card:active { transform: scale(.992); }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
-  .back, .copy, .nav-btn, .nav-button, .navigation a, .bottom-nav a, .practical-nav a { transition: background-color 170ms ease, border-color 170ms ease, color 170ms ease, transform 170ms ease; }
-  .copy:active, .back:active, .nav-btn:active, .nav-button:active, .navigation a:active, .bottom-nav a:active, .practical-nav a:active { transform: scale(.97); }
-  @keyframes gentleAppear { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-  main > section, main > .grid, main > h1, main > .card, main.wrap > section { animation: gentleAppear 340ms ease-out both; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-}
+
+/* Midnight Navy: calm, static study interface */
+:root { --bg:#0B1220; --panel:#172338; --card:#172338; --line:#2A3A52; --cyan:#38BDF8; --text:#E2E8F0; }
+.card:hover,.card:focus-visible { background:#1B2C44; border-color:#38BDF8; box-shadow:none; transform:none; }
+.card:active,.copy:active,.back:active,.practical-nav a:active { transform:none; }
+.copy { transition:background-color 160ms ease,border-color 160ms ease,color 160ms ease; }
+.copy.copied { background:#174735; border-color:#4ADE80; color:#BBF7D0; }
+.copy.copied svg { width:21px; height:21px; }
+@media (prefers-reduced-motion:reduce) { .copy { transition:none; } }
 </style>
 </head>
 

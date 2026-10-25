@@ -9,11 +9,11 @@
 <style>
 :root {
     color-scheme: dark;
-    --bg: #080f20;
-    --panel: #132138;
-    --line: #263c57;
-    --cyan: #4bcbe7;
-    --text: #e2eaf5;
+    --bg: #0B1220;
+    --panel: #172338;
+    --line: #2A3A52;
+    --cyan: #38BDF8;
+    --text: #E2E8F0;
 }
 
 * {
@@ -90,10 +90,10 @@ ul {
 .copy {
     width: 44px;
     height: 44px;
-    border: 1px solid #4aabc7;
+    border: 1px solid #488CAC;
     border-radius: 11px;
-    background: #24405a;
-    color: #eafaff;
+    background: #21374D;
+    color: #D5E9FA;
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -101,7 +101,7 @@ ul {
 }
 
 .copy:active {
-    transform: scale(.96);
+    
 }
 
 .copy svg {
@@ -112,8 +112,8 @@ ul {
 /* Same SQL font and styling as Practical 3 */
 
 pre {
-    background: #061322;
-    border: 1px solid #263e56;
+    background: #0B1728;
+    border: 1px solid #2A3A52;
     border-radius: 14px;
     padding: 14px;
     overflow-x: auto;
@@ -123,7 +123,7 @@ pre {
           Consolas,
           'Liberation Mono',
           monospace;
-    color: #cce5f8;
+    color: #D5E9FA;
     margin: 0;
 }
 
@@ -132,8 +132,8 @@ code {
 }
 
 .result {
-    background: #071524;
-    border: 1px solid #2a435e;
+    background: #0B1728;
+    border: 1px solid #2A3A52;
     border-radius: 12px;
     padding: 14px;
     overflow-x: auto;
@@ -189,18 +189,18 @@ a.back {
     align-items: center;
     justify-content: center;
     padding: 9px 15px;
-    border: 1px solid #4aabc7;
+    border: 1px solid #488CAC;
     border-radius: 10px;
-    background: #24405a;
-    color: #eafaff;
+    background: #21374D;
+    color: #D5E9FA;
     text-decoration: none;
     font-weight: 650;
-    transition: background .2s, border-color .2s;
+    
 }
 a.back:hover, a.back:focus-visible,
 .practical-nav a:hover, .practical-nav a:focus-visible {
-    background: #315875;
-    border-color: #64dcf2;
+    background: #29465F;
+    border-color: #7DD3FC;
     outline: none;
 }
 .practical-nav {
@@ -215,13 +215,13 @@ a.back:hover, a.back:focus-visible,
     align-items: center;
     justify-content: center;
     padding: 10px 15px;
-    border: 1px solid #4aabc7;
+    border: 1px solid #488CAC;
     border-radius: 10px;
-    background: #24405a;
-    color: #eafaff;
+    background: #21374D;
+    color: #D5E9FA;
     font-weight: 650;
     text-decoration: none;
-    transition: background .2s, border-color .2s;
+    
 }
 
 /* Mobile readability adjustments only */
@@ -234,19 +234,15 @@ a.back:hover, a.back:focus-visible,
     .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
 }
 
-/* Subtle, accessible interaction enhancements */
-@media (prefers-reduced-motion: no-preference) {
-  .card { transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
-  .card:active { transform: scale(.992); }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
-  .back, .copy, .nav-btn, .nav-button, .navigation a, .bottom-nav a, .practical-nav a { transition: background-color 170ms ease, border-color 170ms ease, color 170ms ease, transform 170ms ease; }
-  .copy:active, .back:active, .nav-btn:active, .nav-button:active, .navigation a:active, .bottom-nav a:active, .practical-nav a:active { transform: scale(.97); }
-  @keyframes gentleAppear { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-  main > section, main > .grid, main > h1, main > .card, main.wrap > section { animation: gentleAppear 340ms ease-out both; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-}
+
+/* Midnight Navy: calm, static study interface */
+:root { --bg:#0B1220; --panel:#172338; --card:#172338; --line:#2A3A52; --cyan:#38BDF8; --text:#E2E8F0; }
+.card:hover,.card:focus-visible { background:#1B2C44; border-color:#38BDF8; box-shadow:none; transform:none; }
+.card:active,.copy:active,.back:active,.practical-nav a:active { transform:none; }
+.copy { transition:background-color 160ms ease,border-color 160ms ease,color 160ms ease; }
+.copy.copied { background:#174735; border-color:#4ADE80; color:#BBF7D0; }
+.copy.copied svg { width:21px; height:21px; }
+@media (prefers-reduced-motion:reduce) { .copy { transition:none; } }
 </style>
 </head>
 
@@ -288,9 +284,8 @@ a.back:hover, a.back:focus-visible,
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('sourceCode')"
                 aria-label="Copy source code"
-                title="Copy source code">
+                title="Copy source code" data-copy-target="sourceCode">
 
             <svg viewBox="0 0 24 24"
                  fill="none"
@@ -345,9 +340,8 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd1')"
                 aria-label="Copy ADD command"
-                title="Copy command">
+                title="Copy command" data-copy-target="cmd1">
 
             <svg viewBox="0 0 24 24"
                  fill="none"
@@ -375,9 +369,8 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd2')"
                 aria-label="Copy DROP command"
-                title="Copy command">
+                title="Copy command" data-copy-target="cmd2">
 
             <svg viewBox="0 0 24 24"
                  fill="none"
@@ -405,9 +398,8 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd3')"
                 aria-label="Copy MODIFY command"
-                title="Copy command">
+                title="Copy command" data-copy-target="cmd3">
 
             <svg viewBox="0 0 24 24"
                  fill="none"
@@ -435,9 +427,8 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd4')"
                 aria-label="Copy RENAME command"
-                title="Copy command">
+                title="Copy command" data-copy-target="cmd4">
 
             <svg viewBox="0 0 24 24"
                  fill="none"
@@ -465,50 +456,56 @@ INSERT INTO Employee_details VALUES
 </nav>
 </main>
 
+
+
 <script>
-async function copyCode(id) {
-
-    const element = document.getElementById(id);
-    const text = element.textContent.trim();
-
+// Copy feedback is the only animated interaction on this site.
+const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>';
+const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+async function copyCode(id, button) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  const value = target.textContent.trim();
+  let success = false;
+  try {
     if (navigator.clipboard && window.isSecureContext) {
-        try {
-            await navigator.clipboard.writeText(text);
-            return;
-        } catch (error) {
-            // Try fallback.
-        }
+      await navigator.clipboard.writeText(value);
+      success = true;
     }
-
-    const textarea = document.createElement("textarea");
-
-    textarea.value = text;
-    textarea.setAttribute("readonly", "");
-
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-
-    document.body.appendChild(textarea);
-
-    textarea.focus();
-    textarea.select();
-    textarea.setSelectionRange(0, textarea.value.length);
-
-    let copied = false;
-
-    try {
-        copied = document.execCommand("copy");
-    } catch (error) {
-        copied = false;
-    }
-
-    textarea.remove();
-
-    if (!copied) {
-        alert("Copy unavailable. Please select and copy the code manually.");
-    }
+  } catch (_) {}
+  if (!success) {
+    const input = document.createElement('textarea');
+    input.value = value;
+    input.setAttribute('readonly', '');
+    input.style.cssText = 'position:fixed;left:-9999px;top:0';
+    document.body.appendChild(input);
+    input.select();
+    try { success = document.execCommand('copy'); } catch (_) {}
+    input.remove();
+  }
+  if (!success) { alert('Copy unavailable. Please select and copy the code manually.'); return; }
+  if (!button) return;
+  clearTimeout(button._copyTimer);
+  const originalLabel = button.dataset.originalLabel || button.getAttribute('aria-label') || 'Copy SQL';
+  button.dataset.originalLabel = originalLabel;
+  button.classList.add('copied');
+  button.setAttribute('aria-label', 'Copied');
+  button.setAttribute('title', 'Copied');
+  button.innerHTML = checkSvg;
+  button._copyTimer = setTimeout(() => {
+    button.classList.remove('copied');
+    button.setAttribute('aria-label', originalLabel);
+    button.setAttribute('title', originalLabel);
+    button.innerHTML = copySvg;
+  }, 1500);
 }
+document.querySelectorAll('button.copy').forEach(button => {
+  button.removeAttribute('onclick');
+  button.addEventListener('click', () => {
+    const target = button.dataset.copyTarget;
+    if (target) copyCode(target, button);
+  });
+});
 </script>
-
 </body>
 </html>
