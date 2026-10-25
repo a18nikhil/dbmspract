@@ -1,24 +1,263 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DBMS Practical Lab</title>
+
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#080f1e;color:#eaf2ff;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif}header{border-bottom:1px solid #263750;background:#101d32} .wrap{width:min(1040px,calc(100% - 28px));margin:auto}header .wrap{display:flex;align-items:center;gap:12px;padding:18px 0} .logo{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;background:#143a50;color:#64dcf2}h1{font-size:1.2rem;margin:0;letter-spacing:.1px}main{padding:26px 0 60px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card{display:block;text-decoration:none;color:inherit;background:#121f34;border:1px solid #263a53;border-radius:15px;padding:20px;transition:background .2s,border-color .2s,transform .2s}.card:hover,.card:focus-visible{background:#192b45;border-color:#5ccce8;transform:translateY(-2px);outline:none}.num{display:inline-block;color:#75dff2;font-size:.82rem;font-weight:750;letter-spacing:.08em;margin-bottom:12px}.question{font-size:1rem;line-height:1.65;margin:0;overflow-wrap:anywhere} @media(max-width:650px){.grid{grid-template-columns:1fr;gap:12px}header .wrap{padding:15px 0}.card{padding:17px}.question{font-size:.94rem;line-height:1.6}main{padding-top:17px}}
+:root {
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #080f1e;
+    color: #eaf2ff;
+    font-family: system-ui, -apple-system,
+                 'Segoe UI', Arial, sans-serif;
+}
+
+header {
+    border-bottom: 1px solid #263750;
+    background: #101d32;
+}
+
+.wrap {
+    width: min(1040px, calc(100% - 28px));
+    margin: auto;
+}
+
+header .wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: #143a50;
+    color: #64dcf2;
+}
+
+h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    letter-spacing: .1px;
+}
+
+main {
+    padding: 26px 0 60px;
+}
+
+/* One vertical column on all devices */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #121f34;
+    border: 1px solid #263a53;
+    border-radius: 15px;
+    padding: 20px;
+    transition: background .2s,
+                border-color .2s,
+                transform .2s;
+}
+
+.card:hover,
+.card:focus-visible {
+    background: #192b45;
+    border-color: #5ccce8;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.num {
+    display: inline-block;
+    color: #75dff2;
+    font-size: .82rem;
+    font-weight: 750;
+    letter-spacing: .08em;
+    margin-bottom: 12px;
+}
+
+.question {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Mobile adjustments */
+@media (max-width: 650px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    header .wrap {
+        padding: 15px 0;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .question {
+        font-size: .94rem;
+        line-height: 1.6;
+    }
+
+    main {
+        padding-top: 17px;
+    }
+}
 </style>
 </head>
+
 <body>
-<header><div class="wrap"><span class="logo" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></span><h1>DBMS Practical Lab</h1></div></header>
-<main class="wrap"><div class="grid">
-<a class="card" href="p2.html"><span class="num">PRACTICAL 2</span><p class="question">Create a Database "students" and a table "student_details" inside the database. Insert 10 entries with column names: ID, Name, City, Mobile. Show the complete table using DESC command.</p></a>
-<a class="card" href="p3.html"><span class="num">PRACTICAL 3</span><p class="question">Create a Database "students" and a table "student_details" inside the database. Insert 10 entries (ID, Name, City, Mobile). Use commands: Drop Table, Drop Database, Truncate Table.</p></a>
-<a class="card" href="p4.html"><span class="num">PRACTICAL 4</span><p class="question">Create a Database "Employee" and a table "Employee_details" inside the database. Insert 10 entries with column names: ID, Name, Country, Salary, Mobile. Use ALTER TABLE command: ADD | DROP | MODIFY | RENAME TO (new tablename).</p></a>
-<a class="card" href="p5.html"><span class="num">PRACTICAL 5</span><p class="question">Create a Database "Employee" and a table "Employee_details" inside the database. Insert 10 entries with column names: ID, Name, Country, Salary, Mobile. Use single line and double line comments.</p></a>
-<a class="card" href="p6.html"><span class="num">PRACTICAL 6</span><p class="question">Create a Database and use SELECT commands: Select (all columns), Select (specific columns), Select (with WHERE clause), Select (with GROUP BY clause), Select (DISTINCT clause), Select (with HAVING clause), Select (with ORDER BY clause).</p></a>
-<a class="card" href="p7.html"><span class="num">PRACTICAL 7</span><p class="question">Create a Database and use SELECT with WHERE clause: WHERE with logical operators, WHERE with comparison operators, WHERE with BETWEEN operator, WHERE with LIKE operator, WHERE with IN operator.</p></a>
-<a class="card" href="p8.html"><span class="num">PRACTICAL 8</span><p class="question">Create a Database and use GROUP BY clause: Group By single column, Group By multiple columns, Group By with HAVING clause.</p></a>
-<a class="card" href="p9.html"><span class="num">PRACTICAL 9</span><p class="question">Create a Database and use ORDER BY clause: Order By single column, Order By multiple columns, Order By column number. Use UPDATE command.</p></a>
-</div></main>
+
+<header>
+    <div class="wrap">
+
+        <span class="logo" aria-hidden="true">
+            <svg width="25" height="25"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.7"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+
+                <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
+
+            </svg>
+        </span>
+
+        <h1>DBMS Practical Lab</h1>
+
+    </div>
+</header>
+
+<main class="wrap">
+
+<div class="grid">
+
+<a class="card" href="p2.html">
+    <span class="num">PRACTICAL 2</span>
+    <p class="question">
+        Create a Database "students" and a table
+        "student_details" inside the database.
+        Insert 10 entries with column names:
+        ID, Name, City, Mobile.
+        Show the complete table using DESC command.
+    </p>
+</a>
+
+<a class="card" href="p3.html">
+    <span class="num">PRACTICAL 3</span>
+    <p class="question">
+        Create a Database "students" and a table
+        "student_details" inside the database.
+        Insert 10 entries (ID, Name, City, Mobile).
+        Use commands: Drop Table, Drop Database,
+        Truncate Table.
+    </p>
+</a>
+
+<a class="card" href="p4.html">
+    <span class="num">PRACTICAL 4</span>
+    <p class="question">
+        Create a Database "Employee" and a table
+        "Employee_details" inside the database.
+        Insert 10 entries with column names:
+        ID, Name, Country, Salary, Mobile.
+        Use ALTER TABLE command:
+        ADD | DROP | MODIFY | RENAME TO
+        (new tablename).
+    </p>
+</a>
+
+<a class="card" href="p5.html">
+    <span class="num">PRACTICAL 5</span>
+    <p class="question">
+        Create a Database "Employee" and a table
+        "Employee_details" inside the database.
+        Insert 10 entries with column names:
+        ID, Name, Country, Salary, Mobile.
+        Use single line and double line comments.
+    </p>
+</a>
+
+<a class="card" href="p6.html">
+    <span class="num">PRACTICAL 6</span>
+    <p class="question">
+        Create a Database and use SELECT commands:
+        Select (all columns),
+        Select (specific columns),
+        Select (with WHERE clause),
+        Select (with GROUP BY clause),
+        Select (DISTINCT clause),
+        Select (with HAVING clause),
+        Select (with ORDER BY clause).
+    </p>
+</a>
+
+<a class="card" href="p7.html">
+    <span class="num">PRACTICAL 7</span>
+    <p class="question">
+        Create a Database and use SELECT with WHERE clause:
+        WHERE with logical operators,
+        WHERE with comparison operators,
+        WHERE with BETWEEN operator,
+        WHERE with LIKE operator,
+        WHERE with IN operator.
+    </p>
+</a>
+
+<a class="card" href="p8.html">
+    <span class="num">PRACTICAL 8</span>
+    <p class="question">
+        Create a Database and use GROUP BY clause:
+        Group By single column,
+        Group By multiple columns,
+        Group By with HAVING clause.
+    </p>
+</a>
+
+<a class="card" href="p9.html">
+    <span class="num">PRACTICAL 9</span>
+    <p class="question">
+        Create a Database and use ORDER BY clause:
+        Order By single column,
+        Order By multiple columns,
+        Order By column number.
+        Use UPDATE command.
+    </p>
+</a>
+
+</div>
+
+</main>
+
 </body>
 </html>
