@@ -3,12 +3,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DBMS Practical Lab</title>
 
 <style>
 :root {
     color-scheme: dark;
+    --bg: #080f20;
+    --panel: #132138;
+    --line: #263c57;
+    --cyan: #4bcbe7;
+    --text: #e2eaf5;
 }
 
 * {
@@ -17,27 +23,27 @@
 
 body {
     margin: 0;
-    background: #080f1e;
-    color: #eaf2ff;
-    font-family: system-ui, -apple-system,
-                 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.7 Inter, system-ui,
+          -apple-system, 'Segoe UI', sans-serif;
 }
+
+/* Header */
 
 header {
-    border-bottom: 1px solid #263750;
     background: #101d32;
+    border-bottom: 1px solid var(--line);
 }
 
-.wrap {
-    width: min(1000px, calc(100% - 40px));
+.header-inner {
+    max-width: 850px;
     margin: auto;
-}
-
-header .wrap {
+    padding: 18px 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    padding: 18px 0;
 }
 
 .logo {
@@ -52,31 +58,36 @@ header .wrap {
 }
 
 h1 {
-    font-size: 1.2rem;
     margin: 0;
+    font-size: 24px;
+    font-weight: 700;
     letter-spacing: .1px;
 }
 
-main {
-    padding: 26px 0 60px;
+/* Main Container */
+
+.wrap {
+    max-width: 850px;
+    margin: auto;
+    padding: 32px 25px 70px;
 }
 
-/* Vertical layout on desktop and mobile */
+/* Vertical Cards */
 
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 18px;
 }
 
 .card {
     display: block;
     text-decoration: none;
     color: inherit;
-    background: #121f34;
-    border: 1px solid #263a53;
-    border-radius: 15px;
-    padding: 20px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px;
     transition: background .2s,
                 border-color .2s,
                 transform .2s;
@@ -85,55 +96,72 @@ main {
 .card:hover,
 .card:focus-visible {
     background: #192b45;
-    border-color: #5ccce8;
+    border-color: var(--cyan);
     transform: translateY(-2px);
     outline: none;
 }
 
 .num {
-    display: inline-block;
-    color: #75dff2;
-    font-size: .82rem;
+    display: block;
+    color: var(--cyan);
+    font-size: 13px;
     font-weight: 750;
     letter-spacing: .08em;
     margin-bottom: 12px;
 }
 
 .question {
-    font-size: 1rem;
-    line-height: 1.65;
     margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
     overflow-wrap: anywhere;
 }
 
-/* Mobile adjustments */
+/* Mobile */
 
 @media (max-width: 650px) {
 
+    .header-inner {
+        padding: 15px 20px;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+    }
+
+    .logo svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
     .wrap {
-        width: calc(100% - 40px);
+        padding: 24px 28px 55px;
     }
 
     .grid {
-        grid-template-columns: 1fr;
         gap: 14px;
     }
 
-    header .wrap {
-        padding: 15px 0;
+    .card {
+        padding: 18px;
+        border-radius: 16px;
     }
 
-    .card {
-        padding: 17px;
+    .num {
+        font-size: 12px;
+        margin-bottom: 10px;
     }
 
     .question {
-        font-size: .94rem;
-        line-height: 1.6;
-    }
-
-    main {
-        padding-top: 17px;
+        font-size: 14px;
+        line-height: 1.65;
     }
 }
 </style>
@@ -142,11 +170,11 @@ main {
 <body>
 
 <header>
-    <div class="wrap">
+    <div class="header-inner">
 
         <span class="logo" aria-hidden="true">
-
-            <svg width="25" height="25"
+            <svg width="25"
+                 height="25"
                  viewBox="0 0 24 24"
                  fill="none"
                  stroke="currentColor"
@@ -154,12 +182,12 @@ main {
                  stroke-linecap="round"
                  stroke-linejoin="round">
 
-                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <ellipse cx="12" cy="5"
+                         rx="9" ry="3"/>
 
                 <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
 
             </svg>
-
         </span>
 
         <h1>DBMS Practical Lab</h1>
@@ -171,7 +199,10 @@ main {
 
 <div class="grid">
 
+<!-- Practical 2 -->
+
 <a class="card" href="p2.html">
+
     <span class="num">PRACTICAL 2</span>
 
     <p class="question">
@@ -181,9 +212,13 @@ main {
         ID, Name, City, Mobile.
         Show the complete table using DESC command.
     </p>
+
 </a>
 
+<!-- Practical 3 -->
+
 <a class="card" href="p3.html">
+
     <span class="num">PRACTICAL 3</span>
 
     <p class="question">
@@ -193,9 +228,13 @@ main {
         Use commands: Drop Table, Drop Database,
         Truncate Table.
     </p>
+
 </a>
 
+<!-- Practical 4 -->
+
 <a class="card" href="p4.html">
+
     <span class="num">PRACTICAL 4</span>
 
     <p class="question">
@@ -207,9 +246,13 @@ main {
         ADD | DROP | MODIFY | RENAME TO
         (new tablename).
     </p>
+
 </a>
 
+<!-- Practical 5 -->
+
 <a class="card" href="p5.html">
+
     <span class="num">PRACTICAL 5</span>
 
     <p class="question">
@@ -219,9 +262,13 @@ main {
         ID, Name, Country, Salary, Mobile.
         Use single line and double line comments.
     </p>
+
 </a>
 
+<!-- Practical 6 -->
+
 <a class="card" href="p6.html">
+
     <span class="num">PRACTICAL 6</span>
 
     <p class="question">
@@ -234,9 +281,13 @@ main {
         Select (with HAVING clause),
         Select (with ORDER BY clause).
     </p>
+
 </a>
 
+<!-- Practical 7 -->
+
 <a class="card" href="p7.html">
+
     <span class="num">PRACTICAL 7</span>
 
     <p class="question">
@@ -247,9 +298,13 @@ main {
         WHERE with LIKE operator,
         WHERE with IN operator.
     </p>
+
 </a>
 
+<!-- Practical 8 -->
+
 <a class="card" href="p8.html">
+
     <span class="num">PRACTICAL 8</span>
 
     <p class="question">
@@ -258,9 +313,13 @@ main {
         Group By multiple columns,
         Group By with HAVING clause.
     </p>
+
 </a>
 
+<!-- Practical 9 -->
+
 <a class="card" href="p9.html">
+
     <span class="num">PRACTICAL 9</span>
 
     <p class="question">
@@ -270,6 +329,7 @@ main {
         Order By column number.
         Use UPDATE command.
     </p>
+
 </a>
 
 </div>
