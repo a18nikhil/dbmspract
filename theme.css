@@ -8,14 +8,7 @@
  --logo-bg:#1d3146;--logo-text:#90c7ff;--table-head-bg:#22364c;
  --table-head-text:#d9ebff;--table-row-alt:#1a222d;--focus-ring:#79b8ff;
 }
-@media(prefers-color-scheme:light){:root:not([data-theme]){
- --page-bg:#f6f8fa;--surface:#ffffff;--border:#d5dce3;--accent:#0969da;
- --body-text:#24292f;--muted-text:#57606a;--code-bg:#f6f8fa;--code-text:#24292f;
- --output-text:#176b3a;--button-bg:#ffffff;--button-border:#b9c3cd;
- --button-text:#24292f;--button-hover:#eef4fb;--card-hover:#f6faff;
- --logo-bg:#ddf4ff;--logo-text:#0969da;--table-head-bg:#e9f2ff;
- --table-head-text:#174d86;--table-row-alt:#f7f9fc;--focus-ring:#0969da;
-}}
+
 :root[data-theme=light]{
  --page-bg:#f6f8fa;--surface:#ffffff;--border:#d5dce3;--accent:#0969da;
  --body-text:#24292f;--muted-text:#57606a;--code-bg:#f6f8fa;--code-text:#24292f;
@@ -34,7 +27,7 @@
 }
 :root{color-scheme:dark;--bg:var(--page-bg);--panel:var(--surface);--card:var(--surface);--line:var(--border);--cyan:var(--accent);--text:var(--body-text)}
 :root[data-theme=light]{color-scheme:light}
-@media(prefers-color-scheme:light){:root:not([data-theme]){color-scheme:light}}
+
 body{background:var(--page-bg);color:var(--body-text)}
 header{background:var(--page-bg);border-color:var(--border)}
 .logo{background:var(--logo-bg);color:var(--logo-text)}
@@ -78,17 +71,7 @@ a.back:hover,.practical-nav a:hover{background:var(--button-hover);border-color:
  --table-head-text:#f3f8ff;
  --button-text:#f3f6fb;
 }
-@media(prefers-color-scheme:light){
- :root:not([data-theme]){
-  --body-text:#151c27;
-  --muted-text:#354253;
-  --code-text:#182332;
-  --output-text:#145b2c;
-  --accent:#0755b8;
-  --table-head-text:#123b70;
-  --button-text:#192333;
- }
-}
+
 :root[data-theme=light]{
  --body-text:#151c27;
  --muted-text:#354253;
@@ -106,3 +89,9 @@ h1{color:var(--body-text)}
 h2,.num{color:var(--accent)}
 th{color:var(--table-head-text)}
 .copy,.back,.practical-nav a,.theme-toggle{color:var(--button-text)}
+
+/* Theme controls on every practical page; dark is the default. */
+.practical-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:23px}
+.practical-topbar .back{margin:0}
+.practical-topbar .theme-toggle{position:static;transform:none;flex-shrink:0}
+@media(max-width:650px){.practical-topbar .theme-toggle{right:auto;top:auto}.practical-topbar .theme-label{display:none}}

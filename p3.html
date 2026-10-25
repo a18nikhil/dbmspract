@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Practical 3 | DBMS Practical Lab</title>
-<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();</script>
 <style>
 :root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--line:#30363d;--cyan:#58a6ff;--text:#e6edf3;--muted:#b7c7d9}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Inter,system-ui,-apple-system,'Segoe UI',sans-serif}.wrap{max-width:850px;margin:auto;padding:24px 14px 55px}.back{color:var(--cyan);text-decoration:none;font-weight:650;display:inline-block;margin:0 0 23px}h1{text-align:center;font-size:27px;margin:0 0 30px}section{background:var(--panel);border:1px solid var(--line);border-radius: 10px;padding:20px;margin:0 0 18px}h2{color:var(--cyan);font-size:21px;margin:0 0 16px}h3{font-size:17px;margin:0 0 10px;color:#e6f1ff}p{margin:0 0 12px}p:last-child{margin-bottom:0}ul{padding-left:22px;margin:8px 0}.codehead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.codehead h2,.codehead h3{margin:0}.copy{width:44px;height:44px;border:1px solid #3b638b;border-radius:11px;background:#212d3b;color:#e6edf3;cursor:pointer;display:grid;place-items:center;flex-shrink:0}.copy:active{transform:scale(.96)}.copy svg{width:21px;height:21px}pre{background:#0d1117;border:1px solid #30363d;border-radius: 10px;padding:14px;overflow-x:auto;white-space:pre;font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;color:#c9d1d9;margin:0}code{font-family:inherit}.result{background:#0d1117;border:1px solid #30363d;border-radius: 10px;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,Consolas,monospace;color:#3fb950;white-space:pre-wrap;overflow-wrap:anywhere}.block{margin-top:22px}.block:first-of-type{margin-top:0}.sub{color:var(--muted);font-size:14px;margin:0 0 10px}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(min-width:700px){.wrap{padding:32px 25px 70px}section{padding:28px}pre{font-size:14px;padding:18px}}
 .command-pair+.command-pair{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}.command-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}.command-row pre{flex:1;min-width:0}.command-row .copy{width:44px;height:44px}.command-pair .result{margin:0}
@@ -64,7 +64,7 @@ a.back:hover, a.back:focus-visible,
 </head>
 <body>
 <main class="wrap">
-<a class="back" href="index.html">← All Practicals</a>
+<div class="practical-topbar"><a class="back" href="index.html">← All Practicals</a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg><span class="theme-label">Theme</span></button></div>
 <h1>Practical 3</h1>
 <section><h2>Aim</h2><p>Create a Database "students" and a table "student_details" inside the database. Insert 10 entries (ID, Name, City, Mobile). Use commands: Drop Table, Drop Database, Truncate Table.</p></section>
 <section><h2>Background Information</h2><p>MySQL stores data in databases and tables. Sometimes we need to remove records, a table, or an entire database. MySQL provides three commands for these tasks:</p><ul><li><strong>TRUNCATE TABLE</strong> removes all records from a table but keeps its structure.</li><li><strong>DROP TABLE</strong> removes the table along with its records and structure.</li><li><strong>DROP DATABASE</strong> removes the entire database, including all its tables.</li></ul><p>These commands permanently remove data or database objects, so they should be used carefully.</p></section>
@@ -112,5 +112,6 @@ document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener
   if(!ok){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(el);selection.removeAllRanges();selection.addRange(range)}
 }));
 </script>
+<script src="theme.js"></script>
 </body>
 </html>

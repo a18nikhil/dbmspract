@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practical 4 | DBMS Practical Lab</title>
 
-<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();</script>
+
 <style>
 :root {
     color-scheme: dark;
@@ -35,14 +35,6 @@ body {
     padding: 24px 14px 55px;
 }
 
-.back {
-    color: var(--cyan);
-    text-decoration: none;
-    font-weight: 650;
-    display: inline-block;
-    margin: 0 0 23px;
-}
-
 h1 {
     text-align: center;
     font-size: 27px;
@@ -54,7 +46,7 @@ section {
     border: 1px solid var(--line);
     border-radius: 10px;
     padding: 20px;
-    margin: 0 0 18px;
+    margin-bottom: 18px;
 }
 
 h2 {
@@ -76,6 +68,10 @@ ul {
     margin: 8px 0;
 }
 
+li {
+    margin-bottom: 5px;
+}
+
 .codehead {
     display: flex;
     align-items: center;
@@ -88,29 +84,35 @@ ul {
     margin: 0;
 }
 
+/* Consistent copy buttons */
+
 .copy {
     width: 44px;
     height: 44px;
+    padding: 0;
     border: 1px solid #3b638b;
     border-radius: 11px;
     background: #212d3b;
     color: #e6edf3;
     cursor: pointer;
-    display: grid;
-    place-items: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.copy svg {
+    display: block;
+    width: 21px;
+    height: 21px;
     flex-shrink: 0;
 }
 
 .copy:active {
     transform: scale(.96);
 }
-
-.copy svg {
-    width: 21px;
-    height: 21px;
-}
-
-/* Same SQL font and styling as Practical 3 */
 
 pre {
     background: #0d1117;
@@ -120,10 +122,8 @@ pre {
     overflow-x: auto;
     white-space: pre;
     font: 13px/1.75 ui-monospace,
-          SFMono-Regular,
-          Consolas,
-          'Liberation Mono',
-          monospace;
+          SFMono-Regular, Consolas,
+          'Liberation Mono', monospace;
     color: #c9d1d9;
     margin: 0;
 }
@@ -138,12 +138,10 @@ code {
     border-radius: 10px;
     padding: 14px;
     overflow-x: auto;
+    white-space: pre;
     font: 13px/1.6 ui-monospace,
-          Consolas,
-          monospace;
+          Consolas, monospace;
     color: #3fb950;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
     margin: 0;
 }
 
@@ -155,8 +153,8 @@ code {
 
 .command-row {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
@@ -165,8 +163,39 @@ code {
     min-width: 0;
 }
 
-.command-pair .result {
-    margin: 0;
+a.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    margin-bottom: 23px;
+    border: 1px solid #3b638b;
+    border-radius: 10px;
+    background: #212d3b;
+    color: #e6edf3;
+    text-decoration: none;
+    font-weight: 650;
+}
+
+.practical-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.practical-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #3b638b;
+    border-radius: 10px;
+    background: #212d3b;
+    color: #e6edf3;
+    font-weight: 650;
+    text-decoration: none;
 }
 
 @media (min-width: 700px) {
@@ -184,57 +213,39 @@ code {
     }
 }
 
-/* Practical navigation buttons */
-a.back {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 9px 15px;
-    border: 1px solid #3b638b;
-    border-radius: 10px;
-    background: #212d3b;
-    color: #e6edf3;
-    text-decoration: none;
-    font-weight: 650;
-    transition: background .2s, border-color .2s;
-}
-a.back:hover, a.back:focus-visible,
-.practical-nav a:hover, .practical-nav a:focus-visible {
-    background: #2a3a4b;
-    border-color: #79c0ff;
-    outline: none;
-}
-.practical-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-top: 26px;
-}
-.practical-nav a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 15px;
-    border: 1px solid #3b638b;
-    border-radius: 10px;
-    background: #212d3b;
-    color: #e6edf3;
-    font-weight: 650;
-    text-decoration: none;
-    transition: background .2s, border-color .2s;
-}
-
-/* Mobile readability adjustments only */
 @media (max-width: 699px) {
-    body { font-size: 14px; line-height: 1.65; }
-    h1 { font-size: 23px; }
-    h2 { font-size: 19px; }
-    section p, section li { font-size: 14px; line-height: 1.65; }
-    pre, pre code, .result { font-size: 12px; }
-    .back, .practical-nav a, .bottom-nav a { font-size: 13px; }
+    body {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    section p,
+    section li {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    pre,
+    pre code,
+    .result {
+        font-size: 12px;
+    }
+
+    .back,
+    .practical-nav a {
+        font-size: 13px;
+    }
 }
 </style>
+
 <link rel="stylesheet" href="theme.css">
 </head>
 
@@ -242,30 +253,55 @@ a.back:hover, a.back:focus-visible,
 
 <main class="wrap">
 
-<a class="back" href="index.html">
+<div class="practical-topbar"><a class="back" href="index.html">
     ← All Practicals
-</a>
+</a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg><span class="theme-label">Theme</span></button></div>
 
 <h1>Practical 4</h1>
 
 <section>
     <h2>Aim</h2>
 
-    <p>Create a Database "Employee" and a table "Employee_details" inside the database. Insert 10 entries with column names: ID, Name, Country, Salary, Mobile. Use ALTER TABLE command: ADD | DROP | MODIFY | RENAME TO (new tablename).</p>
+    <p>
+        Create a Database "Employee" and a table
+        "Employee_details" inside the database.
+        Insert 10 entries with column names:
+        ID, Name, Country, Salary, Mobile.
+        Use ALTER TABLE command:
+        ADD | DROP | MODIFY | RENAME TO
+        (new tablename).
+    </p>
 </section>
 
 <section>
     <h2>Background Information</h2>
 
-    <p>In MySQL, the ALTER TABLE command is used to change the structure of an existing table. It allows us to add or remove columns, change their data types, or rename the table.</p>
+    <p>
+        In MySQL, the ALTER TABLE command is used
+        to change the structure of an existing table.
+        It allows us to add or remove columns,
+        change their data types, or rename the table.
+    </p>
 
     <p>The four main operations are:</p>
 
     <ul>
-        <li><strong>ADD:</strong> Adds a new column to a table.</li>
-        <li><strong>DROP:</strong> Removes a column from a table.</li>
-        <li><strong>MODIFY:</strong> Changes the data type or properties of a column.</li>
-        <li><strong>RENAME TO:</strong> Changes the name of a table.</li>
+        <li>
+            <strong>ADD:</strong>
+            Adds a new column to a table.
+        </li>
+        <li>
+            <strong>DROP:</strong>
+            Removes a column from a table.
+        </li>
+        <li>
+            <strong>MODIFY:</strong>
+            Changes the data type or properties of a column.
+        </li>
+        <li>
+            <strong>RENAME TO:</strong>
+            Changes the name of a table.
+        </li>
     </ul>
 </section>
 
@@ -276,7 +312,7 @@ a.back:hover, a.back:focus-visible,
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('sourceCode')"
+                onclick="copyCode('sourceCode', this)"
                 aria-label="Copy source code"
                 title="Copy source code">
 
@@ -291,7 +327,6 @@ a.back:hover, a.back:focus-visible,
                       width="13" height="13" rx="2"/>
 
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-
             </svg>
         </button>
     </div>
@@ -325,6 +360,8 @@ INSERT INTO Employee_details VALUES
 
 <h2>Commands and Outputs</h2>
 
+<!-- ADD -->
+
 <div class="command-pair">
 
     <div class="command-row">
@@ -333,7 +370,7 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd1')"
+                onclick="copyCode('cmd1', this)"
                 aria-label="Copy ADD command"
                 title="Copy command">
 
@@ -343,17 +380,21 @@ INSERT INTO Employee_details VALUES
                  stroke-width="2"
                  stroke-linecap="round"
                  stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
+
+                <rect x="8" y="8"
+                      width="13" height="13" rx="2"/>
+
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
             </svg>
 
         </button>
-
     </div>
 
     <div class="result">Query OK, 0 rows affected (0.00 sec)</div>
 
 </div>
+
+<!-- DROP -->
 
 <div class="command-pair">
 
@@ -363,7 +404,7 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd2')"
+                onclick="copyCode('cmd2', this)"
                 aria-label="Copy DROP command"
                 title="Copy command">
 
@@ -373,17 +414,21 @@ INSERT INTO Employee_details VALUES
                  stroke-width="2"
                  stroke-linecap="round"
                  stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
+
+                <rect x="8" y="8"
+                      width="13" height="13" rx="2"/>
+
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
             </svg>
 
         </button>
-
     </div>
 
     <div class="result">Query OK, 0 rows affected (0.00 sec)</div>
 
 </div>
+
+<!-- MODIFY -->
 
 <div class="command-pair">
 
@@ -393,7 +438,7 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd3')"
+                onclick="copyCode('cmd3', this)"
                 aria-label="Copy MODIFY command"
                 title="Copy command">
 
@@ -403,17 +448,21 @@ INSERT INTO Employee_details VALUES
                  stroke-width="2"
                  stroke-linecap="round"
                  stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
+
+                <rect x="8" y="8"
+                      width="13" height="13" rx="2"/>
+
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
             </svg>
 
         </button>
-
     </div>
 
     <div class="result">Query OK, 0 rows affected (0.00 sec)</div>
 
 </div>
+
+<!-- RENAME TO -->
 
 <div class="command-pair">
 
@@ -423,7 +472,7 @@ INSERT INTO Employee_details VALUES
 
         <button class="copy"
                 type="button"
-                onclick="copyCode('cmd4')"
+                onclick="copyCode('cmd4', this)"
                 aria-label="Copy RENAME command"
                 title="Copy command">
 
@@ -433,12 +482,14 @@ INSERT INTO Employee_details VALUES
                  stroke-width="2"
                  stroke-linecap="round"
                  stroke-linejoin="round">
-                <rect x="8" y="8" width="13" height="13" rx="2"/>
-                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0 2 2v9a2 2 0 0 0 2 2h3"/>
+
+                <rect x="8" y="8"
+                      width="13" height="13" rx="2"/>
+
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
             </svg>
 
         </button>
-
     </div>
 
     <div class="result">Query OK, 0 rows affected (0.00 sec)</div>
@@ -447,50 +498,76 @@ INSERT INTO Employee_details VALUES
 
 </section>
 
-<nav class="practical-nav" aria-label="Practical navigation">
+<nav class="practical-nav"
+     aria-label="Practical navigation">
+
     <a href="p3.html">← Practical 3</a>
+
     <a href="p5.html">Practical 5 →</a>
+
 </nav>
+
 </main>
 
 <script>
-async function copyCode(id) {
+async function copyCode(id, button) {
 
     const element = document.getElementById(id);
     const text = element.textContent.trim();
 
+    let copied = false;
+
     if (navigator.clipboard && window.isSecureContext) {
         try {
             await navigator.clipboard.writeText(text);
-            return;
+            copied = true;
+        } catch (error) {}
+    }
+
+    if (!copied) {
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+
+        document.body.appendChild(textarea);
+
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+
+        try {
+            copied = document.execCommand("copy");
         } catch (error) {
-            // Try fallback.
+            copied = false;
         }
+
+        textarea.remove();
     }
 
-    const textarea = document.createElement("textarea");
+    if (copied && button) {
+        const originalIcon = button.innerHTML;
 
-    textarea.value = text;
-    textarea.setAttribute("readonly", "");
+        button.innerHTML = `
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5"/>
+            </svg>
+        `;
 
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
+        button.setAttribute("aria-label", "Copied");
 
-    document.body.appendChild(textarea);
-
-    textarea.focus();
-    textarea.select();
-    textarea.setSelectionRange(0, textarea.value.length);
-
-    let copied = false;
-
-    try {
-        copied = document.execCommand("copy");
-    } catch (error) {
-        copied = false;
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.setAttribute("aria-label", "Copy command");
+        }, 1200);
     }
-
-    textarea.remove();
 
     if (!copied) {
         alert("Copy unavailable. Please select and copy the code manually.");
@@ -498,5 +575,6 @@ async function copyCode(id) {
 }
 </script>
 
+<script src="theme.js"></script>
 </body>
 </html>

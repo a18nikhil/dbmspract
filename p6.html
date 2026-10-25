@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practical 6 | DBMS Practical Lab</title>
-<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();</script>
 <style>
 :root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--line:#30363d;--cyan:#58a6ff;--text:#e6edf3}
 *{box-sizing:border-box}
@@ -77,7 +77,7 @@ a.back:hover, a.back:focus-visible,
 </head>
 <body>
 <main class="wrap">
-<a class="back" href="index.html">← All Practicals</a>
+<div class="practical-topbar"><a class="back" href="index.html">← All Practicals</a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg><span class="theme-label">Theme</span></button></div>
 <h1>Practical 6</h1>
 <section><h2>Aim</h2><p>Create a Database and use SELECT commands: Select (all columns), Select (specific columns), Select (with WHERE clause), Select (with GROUP BY clause), Select (DISTINCT clause), Select (with HAVING clause), Select (with ORDER BY clause).</p></section>
 <section><h2>Background Information</h2>
@@ -163,5 +163,6 @@ async function copyCode(id){
  if(!success)alert('Copy unavailable. Please select and copy the code manually.');
 }
 </script>
+<script src="theme.js"></script>
 </body>
 </html>

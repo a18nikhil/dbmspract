@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Practical 2 | DBMS Practical Lab</title>
-<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('dbmspract-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();</script>
 <style>
 :root{color-scheme:dark;--bg:#0d1117;--card:#161b22;--line:#30363d;--cyan:#58a6ff;--text:#e6edf3}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Arial,Helvetica,sans-serif}.wrap{max-width:850px;margin:auto;padding:24px 14px 50px}.back{color:var(--cyan);text-decoration:none;font-weight:700}h1{text-align:center;font-size:29px;margin:24px 0 30px}section{background:var(--card);border:1px solid var(--line);border-radius: 10px;padding:20px;margin:17px 0}h2{color:var(--cyan);font-size:21px;margin:0 0 14px}p{margin:0 0 14px}p:last-child{margin-bottom:0}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.head h2{margin:0}.copy{width:48px;height:48px;border:1px solid #58a6ff;border-radius:11px;background:#212d3b;color:#e6edf3;display:grid;place-items:center;cursor:pointer}.copy:focus-visible{outline:3px solid #e6edf3;outline-offset:2px}pre{background:#0d1117;border:1px solid #30363d;border-radius: 10px;padding:14px;overflow-x:auto;margin:0;color:#c9d1d9;font:13px/1.85 Consolas,'Courier New',monospace;tab-size:4}table{width:100%;border-collapse:collapse;min-width:610px;font-size:14px}th,td{padding:11px 13px;border:1px solid #30363d;text-align:left}th{background:#212d3b;color:#79c0ff}.table-scroll{overflow-x:auto} @media(min-width:700px){.wrap{padding:32px 24px 65px}section{padding:25px}pre{font-size:14px}}
 
@@ -62,7 +62,7 @@ a.back:hover, a.back:focus-visible,
 <link rel="stylesheet" href="theme.css">
 </head>
 <body><main class="wrap">
-<a class="back" href="index.html">← All Practicals</a>
+<div class="practical-topbar"><a class="back" href="index.html">← All Practicals</a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg><span class="theme-label">Theme</span></button></div>
 <h1>Practical 2</h1>
 <section><h2>Aim</h2><p>Create a Database "students" and a table "student_details" inside the database. Insert 10 entries with column names: ID, Name, City, Mobile. Show the complete table using DESC command.</p></section>
 <section><h2>Background Information</h2><p>In MySQL, the DESC (DESCRIBE) command displays the structure of a table. It shows each column's name, data type, whether NULL values are allowed, key information, default value, and extra properties.</p><p>This command helps us understand how a table is designed before working with its data. DESC shows the table structure, not the records stored in the table.</p></section>
@@ -97,4 +97,5 @@ DESC student_details;</code></pre></section>
 </nav>
 </main><script>
 const btn=document.getElementById('copyBtn');const sql=document.getElementById('sql');btn.addEventListener('click',async()=>{const content=sql.textContent;let copied=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(content);copied=true;}}catch(e){}if(!copied){const ta=document.createElement('textarea');ta.value=content;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();try{copied=document.execCommand('copy')}catch(e){}ta.remove()}if(!copied){const range=document.createRange();range.selectNodeContents(sql);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);alert('Copy was blocked. The SQL code is selected; use Copy from the selection menu.')}});
-</script></body></html>
+</script><script src="theme.js"></script>
+</body></html>
