@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical 8 | DBMS Practical Lab</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080f20;
+  color: #e5edf8;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 22px 18px 55px;
+}
+
+.back {
+  display: inline-block;
+  color: #48c7e7;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 25px;
+  margin: 10px 0 30px;
+}
+
+.card {
+  background: #142238;
+  border: 1px solid #22344e;
+  border-radius: 15px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  color: #48c7e7;
+  font-size: 19px;
+  margin: 0 0 16px;
+}
+
+p {
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  padding-left: 22px;
+  margin-bottom: 0;
+}
+
+li {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.code-header h2 {
+  margin: 0;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #36738d;
+  border-radius: 9px;
+  background: #244158;
+  color: #e5edf8;
+  cursor: pointer;
+}
+
+.copy-btn:active {
+  background: #32617a;
+}
+
+.copy-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+pre {
+  background: #071526;
+  color: #c5d8e9;
+  border: 1px solid #24364d;
+  border-radius: 11px;
+  padding: 15px;
+  margin: 0;
+  overflow-x: auto;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  tab-size: 4;
+  white-space: pre;
+}
+
+.sql-block {
+  margin-bottom: 0;
+}
+
+.command-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.command-row pre {
+  flex: 1;
+  min-width: 0;
+}
+
+.output {
+  color: #83d5a3;
+}
+
+.example {
+  padding: 19px 0;
+  border-bottom: 1px solid #24364d;
+}
+
+.example:first-of-type {
+  padding-top: 4px;
+}
+
+.example:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.example .output {
+  margin-top: 9px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 14px 45px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p, li {
+    font-size: 14px;
+  }
+
+  pre {
+    font-size: 12px;
+    padding: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+<a href="index.html" class="back">← All Practicals</a>
+
+<h1>Practical 8</h1>
+
+<section class="card">
+<h2>Aim</h2>
+<p>Create a Database and use GROUP BY clause: Group By single column, Group By multiple columns, Group By with HAVING clause.</p>
+</section>
+
+<section class="card">
+<h2>Background Information</h2>
+
+<p>In MySQL, the GROUP BY clause is used to arrange rows having the same values into groups. It is commonly used with functions such as COUNT(), SUM(), AVG(), MAX(), and MIN() to calculate results for each group.</p>
+
+<p>There are three types of GROUP BY operations:</p>
+
+<ul>
+<li><strong>GROUP BY single column:</strong> Groups records based on one column.</li>
+<li><strong>GROUP BY multiple columns:</strong> Groups records based on two or more columns.</li>
+<li><strong>GROUP BY with HAVING:</strong> Filters groups based on a condition.</li>
+</ul>
+
+<p>The GROUP BY clause helps us organize and summarize data easily.</p>
+</section>
+
+<section class="card">
+
+<div class="code-header">
+<h2>Source Code</h2>
+<button class="copy-btn" onclick="copyCode('source')" aria-label="Copy source code" title="Copy source code">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="8" y="8" width="13" height="13" rx="2"/>
+<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+</svg>
+</button>
+</div>
+
+<pre id="source" class="sql-block">CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+    ID INT,
+    Name VARCHAR(50),
+    City VARCHAR(30),
+    Marks INT
+);
+
+INSERT INTO student VALUES
+(1, 'Rahul', 'Mumbai', 80),
+(2, 'Neha', 'Delhi', 75),
+(3, 'Aman', 'Mumbai', 90),
+(4, 'Priya', 'Pune', 85),
+(5, 'Rohit', 'Nagpur', 70),
+(6, 'Sneha', 'Mumbai', 88),
+(7, 'Vikas', 'Delhi', 78),
+(8, 'Anjali', 'Pune', 82),
+(9, 'Karan', 'Surat', 76),
+(10, 'Pooja', 'Nagpur', 84);</pre>
+
+</section>
+
+<section class="card">
+<h2>Commands and Outputs</h2>
+
+<div class="example">
+
+<div class="command-row">
+<pre id="cmd1">SELECT City, COUNT(*) FROM student GROUP BY City;</pre>
+<button class="copy-btn" onclick="copyCode('cmd1')" aria-label="Copy SQL command" title="Copy SQL command">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="8" y="8" width="13" height="13" rx="2"/>
+<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+</svg>
+</button>
+</div>
+
+<pre class="output">+--------+----------+
+| City   | COUNT(*) |
++--------+----------+
+| Mumbai |        3 |
+| Delhi  |        2 |
+| Pune   |        2 |
+| Nagpur |        2 |
+| Surat  |        1 |
++--------+----------+
+5 rows in set (0.00 sec)</pre>
+
+</div>
+
+<div class="example">
+
+<div class="command-row">
+<pre id="cmd2">SELECT City, Marks, COUNT(*) FROM student GROUP BY City, Marks;</pre>
+<button class="copy-btn" onclick="copyCode('cmd2')" aria-label="Copy SQL command" title="Copy SQL command">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="8" y="8" width="13" height="13" rx="2"/>
+<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+</svg>
+</button>
+</div>
+
+<pre class="output">+--------+-------+----------+
+| City   | Marks | COUNT(*) |
++--------+-------+----------+
+| Mumbai |    80 |        1 |
+| Delhi  |    75 |        1 |
+| Mumbai |    90 |        1 |
+| Pune   |    85 |        1 |
+| Nagpur |    70 |        1 |
+| Mumbai |    88 |        1 |
+| Delhi  |    78 |        1 |
+| Pune   |    82 |        1 |
+| Surat  |    76 |        1 |
+| Nagpur |    84 |        1 |
++--------+-------+----------+
+10 rows in set (0.00 sec)</pre>
+
+</div>
+
+<div class="example">
+
+<div class="command-row">
+<pre id="cmd3">SELECT City, COUNT(*) FROM student GROUP BY City HAVING COUNT(*) > 1;</pre>
+<button class="copy-btn" onclick="copyCode('cmd3')" aria-label="Copy SQL command" title="Copy SQL command">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="8" y="8" width="13" height="13" rx="2"/>
+<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 0 0 0 2 2h3"/>
+</svg>
+</button>
+</div>
+
+<pre class="output">+--------+----------+
+| City   | COUNT(*) |
++--------+----------+
+| Mumbai |        3 |
+| Delhi  |        2 |
+| Pune   |        2 |
+| Nagpur |        2 |
++--------+----------+
+4 rows in set (0.00 sec)</pre>
+
+</div>
+
+</section>
+
+</main>
+
+<script>
+async function copyCode(id) {
+  const text = document.getElementById(id).textContent;
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+  } catch (error) {
+    // Try fallback.
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "0";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+
+  textarea.focus();
+  textarea.select();
+
+  try {
+    if (!document.execCommand("copy")) {
+      throw new Error("Copy not supported");
+    }
+  } catch (error) {
+    window.prompt("Copy SQL:", text);
+  } finally {
+    textarea.remove();
+  }
+}
+</script>
+
+</body>
+</html>
