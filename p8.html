@@ -7,231 +7,225 @@
 <title>Practical 8 | DBMS Practical Lab</title>
 
 <style>
+:root {
+    color-scheme: dark;
+    --bg: #080f20;
+    --panel: #132138;
+    --line: #263c57;
+    --cyan: #4bcbe7;
+    --text: #e2eaf5;
+}
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  background: #080f20;
-  color: #e5edf8;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.7;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.7 Inter, system-ui, -apple-system,
+          'Segoe UI', sans-serif;
 }
 
-.container {
-  max-width: 850px;
-  margin: auto;
-  padding: 22px 18px 55px;
+.wrap {
+    max-width: 850px;
+    margin: auto;
+    padding: 24px 14px 55px;
 }
 
 .back {
-  display: inline-block;
-  color: #48c7e7;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 20px;
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 650;
+    display: inline-block;
+    margin: 0 0 23px;
 }
 
 h1 {
-  text-align: center;
-  font-size: 25px;
-  margin: 10px 0 30px;
+    text-align: center;
+    font-size: 27px;
+    margin: 0 0 30px;
 }
 
-.card {
-  background: #142238;
-  border: 1px solid #22344e;
-  border-radius: 15px;
-  padding: 22px;
-  margin-bottom: 18px;
+section {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+    margin: 0 0 18px;
 }
 
 h2 {
-  color: #48c7e7;
-  font-size: 19px;
-  margin: 0 0 16px;
+    color: var(--cyan);
+    font-size: 21px;
+    margin: 0 0 16px;
 }
 
 p {
-  font-size: 15px;
-  margin: 0 0 12px;
+    margin: 0 0 12px;
 }
 
 p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 ul {
-  padding-left: 22px;
-  margin-bottom: 0;
+    padding-left: 22px;
+    margin: 8px 0;
 }
 
 li {
-  font-size: 15px;
-  margin-bottom: 7px;
+    margin-bottom: 5px;
 }
 
-.code-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+.codehead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
-.code-header h2 {
-  margin: 0;
+.codehead h2 {
+    margin: 0;
 }
 
-.copy-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border: 1px solid #36738d;
-  border-radius: 9px;
-  background: #244158;
-  color: #e5edf8;
-  cursor: pointer;
+.copy {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #4aabc7;
+    border-radius: 11px;
+    background: #24405a;
+    color: #eafaff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
 }
 
-.copy-btn:active {
-  background: #32617a;
+.copy:active {
+    transform: scale(.96);
 }
 
-.copy-btn svg {
-  width: 19px;
-  height: 19px;
+.copy svg {
+    width: 21px;
+    height: 21px;
 }
 
 pre {
-  background: #071526;
-  color: #c5d8e9;
-  border: 1px solid #24364d;
-  border-radius: 11px;
-  padding: 15px;
-  margin: 0;
-  overflow-x: auto;
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 13px;
-  line-height: 1.65;
-  tab-size: 4;
-  white-space: pre;
+    background: #061322;
+    border: 1px solid #263e56;
+    border-radius: 14px;
+    padding: 14px;
+    overflow-x: auto;
+    white-space: pre;
+    font: 13px/1.75 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          'Liberation Mono',
+          monospace;
+    color: #cce5f8;
+    margin: 0;
 }
 
-.sql-block {
-  margin-bottom: 0;
+code {
+    font-family: inherit;
+}
+
+.result {
+    background: #071524;
+    border: 1px solid #2a435e;
+    border-radius: 12px;
+    padding: 14px;
+    overflow-x: auto;
+    font: 13px/1.6 ui-monospace,
+          Consolas,
+          monospace;
+    color: #9de8b4;
+    white-space: pre;
+    margin: 0;
+}
+
+.command-pair + .command-pair {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .command-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 9px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .command-row pre {
-  flex: 1;
-  min-width: 0;
+    flex: 1;
+    min-width: 0;
 }
 
-.output {
-  color: #83d5a3;
-}
+@media (min-width: 700px) {
+    .wrap {
+        padding: 32px 25px 70px;
+    }
 
-.example {
-  padding: 19px 0;
-  border-bottom: 1px solid #24364d;
-}
+    section {
+        padding: 28px;
+    }
 
-.example:first-of-type {
-  padding-top: 4px;
-}
-
-.example:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.example .output {
-  margin-top: 9px;
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 20px 14px 45px;
-  }
-
-  .card {
-    padding: 18px;
-  }
-
-  h1 {
-    font-size: 23px;
-  }
-
-  h2 {
-    font-size: 18px;
-  }
-
-  p, li {
-    font-size: 14px;
-  }
-
-  pre {
-    font-size: 12px;
-    padding: 12px;
-  }
+    pre {
+        font-size: 14px;
+        padding: 18px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<main class="container">
+<main class="wrap">
 
-<a href="index.html" class="back">← All Practicals</a>
+<a class="back" href="index.html">← All Practicals</a>
 
 <h1>Practical 8</h1>
 
-<section class="card">
-<h2>Aim</h2>
-<p>Create a Database and use GROUP BY clause: Group By single column, Group By multiple columns, Group By with HAVING clause.</p>
+<section>
+    <h2>Aim</h2>
+
+    <p>Create a Database and use GROUP BY clause: Group By single column, Group By multiple columns, Group By with HAVING clause.</p>
 </section>
 
-<section class="card">
-<h2>Background Information</h2>
+<section>
+    <h2>Background Information</h2>
 
-<p>In MySQL, the GROUP BY clause is used to arrange rows having the same values into groups. It is commonly used with functions such as COUNT(), SUM(), AVG(), MAX(), and MIN() to calculate results for each group.</p>
+    <p>In MySQL, the GROUP BY clause is used to arrange rows having the same values into groups. It is commonly used with functions such as COUNT(), SUM(), AVG(), MAX(), and MIN() to calculate results for each group.</p>
 
-<p>There are three types of GROUP BY operations:</p>
+    <ul>
+        <li><strong>GROUP BY single column:</strong> Groups records based on one column.</li>
+        <li><strong>GROUP BY multiple columns:</strong> Groups records based on two or more columns.</li>
+        <li><strong>GROUP BY with HAVING:</strong> Filters groups based on a condition.</li>
+    </ul>
 
-<ul>
-<li><strong>GROUP BY single column:</strong> Groups records based on one column.</li>
-<li><strong>GROUP BY multiple columns:</strong> Groups records based on two or more columns.</li>
-<li><strong>GROUP BY with HAVING:</strong> Filters groups based on a condition.</li>
-</ul>
-
-<p>The GROUP BY clause helps us organize and summarize data easily.</p>
+    <p>The GROUP BY clause helps us organize and summarize data easily.</p>
 </section>
 
-<section class="card">
+<section>
+    <div class="codehead">
+        <h2>Source Code</h2>
+        <button class="copy" type="button"
+                onclick="copyCode('sourceCode')"
+                aria-label="Copy source code">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+    </div>
 
-<div class="code-header">
-<h2>Source Code</h2>
-<button class="copy-btn" onclick="copyCode('source')" aria-label="Copy source code" title="Copy source code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<rect x="8" y="8" width="13" height="13" rx="2"/>
-<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-</svg>
-</button>
-</div>
-
-<pre id="source" class="sql-block">CREATE DATABASE college;
+<pre><code id="sourceCode">CREATE DATABASE college;
 USE college;
 
 CREATE TABLE student (
@@ -251,26 +245,28 @@ INSERT INTO student VALUES
 (7, 'Vikas', 'Delhi', 78),
 (8, 'Anjali', 'Pune', 82),
 (9, 'Karan', 'Surat', 76),
-(10, 'Pooja', 'Nagpur', 84);</pre>
-
+(10, 'Pooja', 'Nagpur', 84);</code></pre>
 </section>
 
-<section class="card">
+<section>
 <h2>Commands and Outputs</h2>
 
-<div class="example">
-
-<div class="command-row">
-<pre id="cmd1">SELECT City, COUNT(*) FROM student GROUP BY City;</pre>
-<button class="copy-btn" onclick="copyCode('cmd1')" aria-label="Copy SQL command" title="Copy SQL command">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<rect x="8" y="8" width="13" height="13" rx="2"/>
-<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-</svg>
-</button>
-</div>
-
-<pre class="output">+--------+----------+
+<!-- GROUP BY SINGLE COLUMN -->
+<div class="command-pair">
+    <div class="command-row">
+        <pre><code id="cmd1">SELECT City, COUNT(*) FROM student GROUP BY City;</code></pre>
+        <button class="copy" type="button"
+                onclick="copyCode('cmd1')"
+                aria-label="Copy GROUP BY single column query">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+    </div>
+<pre class="result">+--------+----------+
 | City   | COUNT(*) |
 +--------+----------+
 | Mumbai |        3 |
@@ -280,22 +276,24 @@ INSERT INTO student VALUES
 | Surat  |        1 |
 +--------+----------+
 5 rows in set (0.00 sec)</pre>
-
 </div>
 
-<div class="example">
-
-<div class="command-row">
-<pre id="cmd2">SELECT City, Marks, COUNT(*) FROM student GROUP BY City, Marks;</pre>
-<button class="copy-btn" onclick="copyCode('cmd2')" aria-label="Copy SQL command" title="Copy SQL command">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<rect x="8" y="8" width="13" height="13" rx="2"/>
-<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-</svg>
-</button>
-</div>
-
-<pre class="output">+--------+-------+----------+
+<!-- GROUP BY MULTIPLE COLUMNS -->
+<div class="command-pair">
+    <div class="command-row">
+        <pre><code id="cmd2">SELECT City, Marks, COUNT(*) FROM student GROUP BY City, Marks;</code></pre>
+        <button class="copy" type="button"
+                onclick="copyCode('cmd2')"
+                aria-label="Copy GROUP BY multiple columns query">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+    </div>
+<pre class="result">+--------+-------+----------+
 | City   | Marks | COUNT(*) |
 +--------+-------+----------+
 | Mumbai |    80 |        1 |
@@ -310,22 +308,24 @@ INSERT INTO student VALUES
 | Nagpur |    84 |        1 |
 +--------+-------+----------+
 10 rows in set (0.00 sec)</pre>
-
 </div>
 
-<div class="example">
-
-<div class="command-row">
-<pre id="cmd3">SELECT City, COUNT(*) FROM student GROUP BY City HAVING COUNT(*) > 1;</pre>
-<button class="copy-btn" onclick="copyCode('cmd3')" aria-label="Copy SQL command" title="Copy SQL command">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<rect x="8" y="8" width="13" height="13" rx="2"/>
-<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 0 0 0 2 2h3"/>
-</svg>
-</button>
-</div>
-
-<pre class="output">+--------+----------+
+<!-- GROUP BY WITH HAVING -->
+<div class="command-pair">
+    <div class="command-row">
+        <pre><code id="cmd3">SELECT City, COUNT(*) FROM student GROUP BY City HAVING COUNT(*) > 1;</code></pre>
+        <button class="copy" type="button"
+                onclick="copyCode('cmd3')"
+                aria-label="Copy GROUP BY with HAVING query">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
+                <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+    </div>
+<pre class="result">+--------+----------+
 | City   | COUNT(*) |
 +--------+----------+
 | Mumbai |        3 |
@@ -334,7 +334,6 @@ INSERT INTO student VALUES
 | Nagpur |        2 |
 +--------+----------+
 4 rows in set (0.00 sec)</pre>
-
 </div>
 
 </section>
@@ -343,37 +342,42 @@ INSERT INTO student VALUES
 
 <script>
 async function copyCode(id) {
-  const text = document.getElementById(id).textContent;
+    const element = document.getElementById(id);
+    const text = element.textContent.trim();
 
-  try {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-      return;
+        try {
+            await navigator.clipboard.writeText(text);
+            return;
+        } catch (error) {
+            // Use fallback.
+        }
     }
-  } catch (error) {
-    // Try fallback.
-  }
 
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.position = "fixed";
-  textarea.style.top = "0";
-  textarea.style.left = "0";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
 
-  textarea.focus();
-  textarea.select();
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
 
-  try {
-    if (!document.execCommand("copy")) {
-      throw new Error("Copy not supported");
+    let copied = false;
+
+    try {
+        copied = document.execCommand("copy");
+    } catch (error) {
+        copied = false;
     }
-  } catch (error) {
-    window.prompt("Copy SQL:", text);
-  } finally {
+
     textarea.remove();
-  }
+
+    if (!copied) {
+        alert("Copy unavailable. Please select and copy the code manually.");
+    }
 }
 </script>
 
