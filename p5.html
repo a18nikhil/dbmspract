@@ -75,6 +75,10 @@ ul {
     margin: 8px 0;
 }
 
+li {
+    margin-bottom: 5px;
+}
+
 .codehead {
     display: flex;
     align-items: center;
@@ -129,19 +133,26 @@ code {
     font-family: inherit;
 }
 
+/* FIXED: Keep MySQL table columns aligned */
 .result {
     background: #071524;
     border: 1px solid #2a435e;
     border-radius: 12px;
     padding: 14px;
     overflow-x: auto;
+    overflow-y: hidden;
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
     font: 13px/1.6 ui-monospace,
+          SFMono-Regular,
           Consolas,
+          'Liberation Mono',
           monospace;
     color: #9de8b4;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
     margin: 0;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .command-pair + .command-pair {
@@ -183,9 +194,7 @@ code {
 
 <main class="wrap">
 
-<a class="back" href="index.html">
-    ← All Practicals
-</a>
+<a class="back" href="index.html">← All Practicals</a>
 
 <h1>Practical 5</h1>
 
@@ -209,28 +218,16 @@ code {
 </section>
 
 <section>
-
     <div class="codehead">
         <h2>Source Code</h2>
-
-        <button class="copy"
-                type="button"
+        <button class="copy" type="button"
                 onclick="copyCode('sourceCode')"
-                aria-label="Copy source code"
-                title="Copy source code">
-
-            <svg viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <rect x="8" y="8"
-                      width="13" height="13" rx="2"/>
-
+                aria-label="Copy source code">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="8" width="13" height="13" rx="2"/>
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
-
             </svg>
         </button>
     </div>
@@ -257,41 +254,30 @@ INSERT INTO Employee_details VALUES
 (8, 'Sneha', 'Australia', 42000, '9876543217'),
 (9, 'Vikas', 'USA', 50000, '9876543218'),
 (10, 'Pooja', 'India', 28000, '9876543219');</code></pre>
-
 </section>
 
 <section>
-
 <h2>Commands and Outputs</h2>
 
+<!-- SINGLE-LINE COMMENT -->
 <div class="command-pair">
-
     <div class="command-row">
-
         <pre><code id="cmd1">-- Display all employee records
 SELECT * FROM Employee_details;</code></pre>
 
-        <button class="copy"
-                type="button"
+        <button class="copy" type="button"
                 onclick="copyCode('cmd1')"
-                aria-label="Copy single-line comment example"
-                title="Copy command">
-
-            <svg viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
+                aria-label="Copy single-line comment example">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
                 <rect x="8" y="8" width="13" height="13" rx="2"/>
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
             </svg>
-
         </button>
-
     </div>
 
-    <pre class="result">+----+--------+-----------+--------+------------+
+<pre class="result">+----+--------+-----------+--------+------------+
 | ID | Name   | Country   | Salary | Mobile     |
 +----+--------+-----------+--------+------------+
 |  1 | Rahul  | India     |  25000 | 9876543210 |
@@ -306,38 +292,28 @@ SELECT * FROM Employee_details;</code></pre>
 | 10 | Pooja  | India     |  28000 | 9876543219 |
 +----+--------+-----------+--------+------------+
 10 rows in set (0.00 sec)</pre>
-
 </div>
 
+<!-- MULTI-LINE COMMENT -->
 <div class="command-pair">
-
     <div class="command-row">
-
         <pre><code id="cmd2">/* Display
    all employee details */
 SELECT * FROM Employee_details;</code></pre>
 
-        <button class="copy"
-                type="button"
+        <button class="copy" type="button"
                 onclick="copyCode('cmd2')"
-                aria-label="Copy multi-line comment example"
-                title="Copy command">
-
-            <svg viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
+                aria-label="Copy multi-line comment example">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
                 <rect x="8" y="8" width="13" height="13" rx="2"/>
                 <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
             </svg>
-
         </button>
-
     </div>
 
-    <pre class="result">+----+--------+-----------+--------+------------+
+<pre class="result">+----+--------+-----------+--------+------------+
 | ID | Name   | Country   | Salary | Mobile     |
 +----+--------+-----------+--------+------------+
 |  1 | Rahul  | India     |  25000 | 9876543210 |
@@ -352,7 +328,6 @@ SELECT * FROM Employee_details;</code></pre>
 | 10 | Pooja  | India     |  28000 | 9876543219 |
 +----+--------+-----------+--------+------------+
 10 rows in set (0.00 sec)</pre>
-
 </div>
 
 </section>
@@ -361,7 +336,6 @@ SELECT * FROM Employee_details;</code></pre>
 
 <script>
 async function copyCode(id) {
-
     const element = document.getElementById(id);
     const text = element.textContent.trim();
 
@@ -370,20 +344,17 @@ async function copyCode(id) {
             await navigator.clipboard.writeText(text);
             return;
         } catch (error) {
-            // Try fallback.
+            // Use fallback.
         }
     }
 
     const textarea = document.createElement("textarea");
-
     textarea.value = text;
     textarea.setAttribute("readonly", "");
-
     textarea.style.position = "fixed";
     textarea.style.left = "-9999px";
 
     document.body.appendChild(textarea);
-
     textarea.focus();
     textarea.select();
     textarea.setSelectionRange(0, textarea.value.length);
