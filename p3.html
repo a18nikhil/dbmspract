@@ -68,6 +68,37 @@ a.back:hover, a.back:focus-visible,
 .copy.copied { background:#174735; border-color:#4ADE80; color:#BBF7D0; }
 .copy.copied svg { width:21px; height:21px; }
 @media (prefers-reduced-motion:reduce) { .copy { transition:none; } }
+
+/* Follow the operating system's light/dark appearance; dark colors above remain unchanged. */
+@media (prefers-color-scheme: light) {
+ :root { color-scheme: light; --bg:#F8FAFC; --panel:#FFFFFF; --card:#FFFFFF; --line:#DCE3EC; --cyan:#1D4ED8; --text:#0F172A; --muted:#475569; }
+ body { background:var(--bg); color:var(--text); }
+ header { background:#FFFFFF; border-color:#DCE3EC; }
+ section, .card { background:#FFFFFF; border-color:#DCE3EC; color:#0F172A; }
+ .card:hover,.card:focus-visible { background:#F1F5F9; border-color:#93B4E9; }
+ .logo { background:#E8F0FE; color:#1D4ED8; }
+ h1, .question, p, li { color:inherit; }
+ h2, .num, .back { color:#1D4ED8; }
+ pre, pre code, .command-row pre, .command-pair pre { background:#F1F5F9; color:#1E3A5F; border-color:#DCE3EC; }
+ .result, .output, .result pre, .output pre { background:#EFF6F1; color:#166534; border-color:#CFE7D7; }
+ table { color:#0F172A; }
+ th, td { border-color:#CBD5E1; }
+ th { background:#E8F0FE; color:#1D4ED8; }
+ .copy, button.copy, a.back, .practical-nav a { background:#EFF6FF; color:#1D4ED8; border-color:#B7CFF5; }
+ a.back:hover, a.back:focus-visible, .practical-nav a:hover, .practical-nav a:focus-visible { background:#E1EEFF; border-color:#729FE6; }
+ .copy svg { stroke:currentColor; }
+}
+/* Brief, restrained visual acknowledgement after a successful copy. */
+.copy.copied { animation:copy-press-flash .28s ease-out; }
+@keyframes copy-press-flash { 0% { opacity:1; } 45% { opacity:.48; } 100% { opacity:1; } }
+@media (prefers-reduced-motion: reduce) { .copy.copied { animation:none; } }
+/* Do not turn copy buttons green or replace their icons. */
+.copy.copied { color:inherit; }
+
+:root { color-scheme:dark light; }
+.copy.copied, button.copy.copied { background:#21374D !important; border-color:#38BDF8 !important; color:#F1F5F9 !important; }
+@media(prefers-color-scheme:light) { .copy.copied, button.copy.copied { background:#EFF6FF !important; border-color:#B7CFF5 !important; color:#1D4ED8 !important; } }
+
 </style>
 </head>
 <body>
@@ -142,13 +173,13 @@ async function copyCode(id, button) {
   button.classList.add('copied');
   button.setAttribute('aria-label', 'Copied');
   button.setAttribute('title', 'Copied');
-  button.innerHTML = checkSvg;
+  
   button._copyTimer = setTimeout(() => {
     button.classList.remove('copied');
     button.setAttribute('aria-label', originalLabel);
     button.setAttribute('title', originalLabel);
-    button.innerHTML = copySvg;
-  }, 1500);
+    
+  }, 300);
 }
 document.querySelectorAll('button.copy').forEach(button => {
   button.removeAttribute('onclick');
